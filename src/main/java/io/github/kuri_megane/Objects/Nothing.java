@@ -1,12 +1,12 @@
 package io.github.kuri_megane.Objects;
 
-public class Cookie implements GameObjects {
+public class Nothing implements GameObjects {
 
-    private static final String displayChar = "★";
+    private static final String displayChar = " ";
     private static final boolean goFlag = true;
-    private static final String key = "c";
+    private static final String key = "n";
 
-    public Cookie() {
+    public Nothing() {
     }
 
     public String getChar() {
