@@ -1,23 +1,18 @@
 package io.github.kuri_megane.Layer;
 
-import io.github.kuri_megane.Objects.GameMap;
-import io.github.kuri_megane.Objects.GameObjects;
 import jline.Terminal;
 import jline.TerminalFactory;
 import jline.console.ConsoleReader;
 
 import java.io.IOException;
 
-public class PlayScreen implements BackLayer {
+public class PlayScreen extends Thread implements BackLayer {
 
     private int consoleHeight = 0;
     private int consoleWidth = 0;
-    private GameMap gameMap;
     private ConsoleReader console;
 
-
-    public PlayScreen(GameMap gameMap) {
-        this.gameMap = gameMap;
+    public PlayScreen() {
 
         try {
             console = new ConsoleReader();
@@ -27,34 +22,58 @@ public class PlayScreen implements BackLayer {
         }
     }
 
+
+    /**
+     * コンソールサイズを取得します．
+     */
     public void getConsoleSize() {
         Terminal terminal = TerminalFactory.get();
         consoleHeight = terminal.getHeight();
         consoleWidth = terminal.getWidth();
     }
 
-    public void display() {
+    /**
+     * [テスト用] 取得したコンソールサイズの高さの値を取り出します.
+     *
+     * @return コンソールサイズの高さ
+     */
+    public int getConsoleHeight() {
+        return consoleHeight;
+    }
 
+    /**
+     * [テスト用] 取得したコンソールサイズの幅の値を取り出します.
+     *
+     * @return コンソールサイズの幅
+     */
+    public int getConsoleWidth() {
+        return consoleWidth;
+    }
+
+    /**
+     * ゲームのプレイ画面 (つまり ゲームマップ) の描画
+     *
+     * @param strings 描画する文字列
+     */
+    public void display(String strings) {
+
+        // 表示
+        System.out.printf(strings);
+
+        // 一時スリープ
         try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-            // オブジェクトの表示
-            // XXX: ここあとでもう少しきれいに
-            // TODO: コンソールのサイズに合わせて
-            for (int row = 0; row < 5; row++) {
-                for (int col = 0; col < 17; col++) {
-                    GameObjects gameObjects = gameMap.get(row, col);
-                    System.out.printf(gameObjects.getChar());
-                }
-                System.out.printf("%n");
-            }
-            console.flush();
-
-            // スクリーンクリア
+        // クリア
+        try {
             console.clearScreen();
             console.flush();
-
-        } catch (IOException e) {
-            System.out.println(e);
+        }
+        catch (IOException e){
+            e.getMessage();
         }
     }
 }
