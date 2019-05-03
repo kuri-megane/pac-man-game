@@ -5,65 +5,88 @@ import java.util.Map;
 
 public class GameMap {
 
-    // ゲームのオブジェクト配置定義
-    // XXX: 一旦ここに書き連ねていく
-    private String[][] strGameObjects = {
-            {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-            {"w", "c", "c", "c", "c", "m", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
-            {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-            {"w", "p", "c", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
-            {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"}
-    };
-
-    // ゲームオブジェクト
-    private GameObjects[][] gameObjects = new GameObjects[strGameObjects.length][strGameObjects[0].length];
+    // ゲームのオブジェクトの配置 幅と高さ
+    private final int gameMapHeight = 5;
+    private final int gameMapWidth = 17;
+    // ゲームのオブジェクトの配置 (文字型)
+    private String[][] strGameMap = new String[gameMapHeight][gameMapWidth];
+    // ゲームのオブジェクトの配置 (GameObject型)
+    private GameObjects[][] gameMap = new GameObjects[gameMapHeight][gameMapWidth];
     // 各オブジェクトの数
     private Map<String, Integer> numOfObjects = new HashMap<String, Integer>();
 
     public GameMap() {
-        create();
+        setUp();
+        convert();
+        count();
+    }
+
+    public GameMap(String[][] strGameMap) {
+        setUp(strGameMap);
+        convert();
         count();
     }
 
     /**
-     * 文字列配列 strGameObjects で与えられた GameObject の配置を
+     * デフォルトのゲームオブジェクトの配置を定義します．
+     */
+    public void setUp() {
+        strGameMap = new String[][]{
+                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
+                {"w", "c", "c", "c", "c", "m", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
+                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
+                {"w", "p", "c", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
+                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"}
+        };
+    }
+
+    /**
+     * ゲームオブジェクトの配置を定義します．
+     *
+     * @param stringArray 配置を記載したString型2次元配列
+     */
+    public void setUp(String[][] stringArray) {
+        strGameMap = stringArray;
+    }
+
+    /**
+     * 文字列配列 strGameMap で与えられた GameObject の配置を
      * インスタンスの配列に変換します．
      */
-    public void create() {
+    public void convert() {
 
-        for (int row = 0; row < strGameObjects.length; row++) {
-            for (int col = 0; col < strGameObjects[row].length; col++) {
+        for (int row = 0; row < strGameMap.length; row++) {
+            for (int col = 0; col < strGameMap[row].length; col++) {
 
                 // 壁
-                if (strGameObjects[row][col].equals("w")) {
-                    gameObjects[row][col] = new Wall();
+                if (strGameMap[row][col].equals("w")) {
+                    gameMap[row][col] = new Wall();
                     continue;
                 }
                 // クッキー
-                if (strGameObjects[row][col].equals("c")) {
-                    gameObjects[row][col] = new Cookie();
+                if (strGameMap[row][col].equals("c")) {
+                    gameMap[row][col] = new Cookie();
                     continue;
                 }
                 // 何もない場所
-                if (strGameObjects[row][col].equals("n")) {
-                    gameObjects[row][col] = new Nothing();
+                if (strGameMap[row][col].equals("n")) {
+                    gameMap[row][col] = new Nothing();
                     continue;
                 }
 
                 // パックマン
-                if (strGameObjects[row][col].equals("p")) {
-                    gameObjects[row][col] = new PacMan();
+                if (strGameMap[row][col].equals("p")) {
+                    gameMap[row][col] = new PacMan();
                     continue;
                 }
                 // モンスター
-                if (strGameObjects[row][col].equals("m")) {
-                    gameObjects[row][col] = new Monster();
+                if (strGameMap[row][col].equals("m")) {
+                    gameMap[row][col] = new Monster();
                     continue;
                 }
 
                 // それ以外
-                gameObjects[row][col] = new Nothing();
-                continue;
+                gameMap[row][col] = new Nothing();
             }
         }
     }
@@ -72,7 +95,7 @@ public class GameMap {
      * ゲームの構成オブジェクトが各々いくつあるかカウントします.
      */
     public void count() {
-        for (GameObjects[] row : gameObjects) {
+        for (GameObjects[] row : gameMap) {
             for (GameObjects obj : row) {
                 Integer i = numOfObjects.get(obj.getKey());
                 numOfObjects.put(obj.getKey(), i == null ? 1 : i + 1);
@@ -84,25 +107,25 @@ public class GameMap {
     /**
      * 指定された座標について調べてオブジェクトを返します．
      *
-     * @param x x座標
-     * @param y y座標
+     * @param row 行
+     * @param col 列
      * @return 当該座標の該当するオブジェクト
      */
-    public GameObjects get(int x, int y) {
-        return gameObjects[x][y];
+    public GameObjects get(int row, int col) {
+        return gameMap[row][col];
     }
 
     /**
      * パックマンが通過した位置のオブジェクトを書き換えます．
      *
-     * @param x x座標
-     * @param y y座標
+     * @param row 行
+     * @param col 列
      */
-    public void rewrite(int x, int y) {
-        if (gameObjects[x][y] instanceof Cookie) {
+    public void rewrite(int row, int col) {
+        if (gameMap[row][col] instanceof Cookie) {
 
             // 書き換えの実施
-            gameObjects[x][y] = new Nothing();
+            gameMap[row][col] = new Nothing();
 
             // オブジェクト数も減らす
             numOfObjects.put("c", numOfObjects.get("c") - 1);
@@ -116,9 +139,42 @@ public class GameMap {
      */
     public boolean isProceed() {
 
-        if (numOfObjects.get("c") > 1) {
+        if (numOfObjects.get("c") > 0) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * ゲームマップの高さを取得します．
+     * @return ゲームマップの高さの値
+     */
+    public int getGameMapHeight(){
+        return gameMapHeight;
+    }
+
+    /**
+     * ゲームマップの幅を取得します．
+     * @return ゲームマップの幅の値
+     */
+    public int getGameMapWidth(){
+        return gameMapWidth;
+    }
+
+    /**
+     * 描画用の文字列を整形します．
+     * @return ゲームオブジェクトが文字に変換された描画文字列
+     */
+    public String createDisplayStrings(){
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int row = 0; row < getGameMapHeight(); row++) {
+            for (int col = 0; col < getGameMapWidth(); col++) {
+                stringBuilder.append(get(row,col).getChar());
+            }
+            stringBuilder.append("%n");
+        }
+        return stringBuilder.toString();
     }
 }
