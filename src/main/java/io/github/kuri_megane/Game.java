@@ -17,10 +17,10 @@ public class Game {
     public void run() {
 
         gameMap = new GameMap();
-        playScreen = new PlayScreen(gameMap);
+        playScreen = new PlayScreen();
 
         while (gameMap.isProceed()) {
-            playScreen.display();
+            playScreen.display(gameMap.createDisplayStrings());
         }
     }
 
