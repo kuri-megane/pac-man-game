@@ -10,4 +10,8 @@ public interface MovingObjects {
 
     void setCol(int col);
 
+    void addScore();
+
+    int getScore();
+
 }

@@ -155,6 +155,9 @@ public class GameMap {
             // クッキーの数を減らす
             numOfObjects.put("c", numOfObjects.get("c") - 1);
 
+            // 得点付与
+            obj.addScore();
+
             return;
         }
 

@@ -9,6 +9,7 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     private static final String displayChar = "×";
     private static final boolean goFlag = false;
     private static final String key = "m";
+    private int score = 0;
 
     public Monster(int row, int col) {
         super(row, col);
@@ -42,5 +43,13 @@ public class Monster extends Point implements GameObjects, MovingObjects {
         after.setRow(getRow());
         after.setCol(getCol() + random.nextInt(3) - 1);
         return after;
+    }
+
+    public void addScore(){
+        score++;
+    }
+
+    public int getScore(){
+        return score;
     }
 }
