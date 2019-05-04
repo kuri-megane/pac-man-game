@@ -2,7 +2,9 @@ package io.github.kuri_megane.Objects;
 
 import io.github.kuri_megane.Point;
 
-public class Monster extends Point implements GameObjects, MovingObjects  {
+import java.util.Random;
+
+public class Monster extends Point implements GameObjects, MovingObjects {
 
     private static final String displayChar = "×";
     private static final boolean goFlag = false;
@@ -22,5 +24,23 @@ public class Monster extends Point implements GameObjects, MovingObjects  {
 
     public String getKey() {
         return key;
+    }
+
+    public Point next() {
+
+        Point after = new Point(0, 0);
+        Random random = new Random();
+
+        // 約半分の確率で横にずらす
+        if (random.nextBoolean()) {
+            after.setRow(getRow() + random.nextInt(3) - 1);
+            after.setCol(getCol());
+            return after;
+        }
+
+        // 縦にずらす
+        after.setRow(getRow());
+        after.setCol(getCol() + random.nextInt(3) - 1);
+        return after;
     }
 }

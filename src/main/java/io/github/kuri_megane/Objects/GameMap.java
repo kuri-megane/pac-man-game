@@ -118,7 +118,7 @@ public class GameMap {
     }
 
     /**
-     * パックマンが通過した位置のオブジェクトを書き換えます．
+     * MovingObjects が通過した位置のオブジェクトを書き換えます．
      *
      * @param obj   移動するゲームオブジェクト
      * @param after 移動後の座標
@@ -127,10 +127,12 @@ public class GameMap {
 
         // Nothing オブジェクトなら
         if (gameMap[after.getRow()][after.getCol()] instanceof Nothing) {
+
             // 移動元 書き換え
             gameMap[obj.getRow()][obj.getCol()] = new Nothing();
             // 移動先 書き換え
             gameMap[after.getRow()][after.getCol()] = (GameObjects) obj;
+
             // MovingObject の座標更新
             obj.setRow(after.getRow());
             obj.setCol(after.getCol());
@@ -140,23 +142,39 @@ public class GameMap {
 
         // Cookie オブジェクトなら
         if (gameMap[after.getRow()][after.getCol()] instanceof Cookie) {
+
             // 移動元 書き換え
             gameMap[obj.getRow()][obj.getCol()] = new Nothing();
             // 移動先 書き換え
             gameMap[after.getRow()][after.getCol()] = (GameObjects) obj;
+
             // MovingObject の座標更新
             obj.setRow(after.getRow());
             obj.setCol(after.getCol());
+
             // クッキーの数を減らす
             numOfObjects.put("c", numOfObjects.get("c") - 1);
 
             return;
         }
 
+        // PacMan オブジェクトなら
+        if (gameMap[after.getRow()][after.getCol()] instanceof PacMan) {
+
+            // 移動元 書き換え
+            gameMap[obj.getRow()][obj.getCol()] = new Nothing();
+            // 移動先 書き換え
+            gameMap[after.getRow()][after.getCol()] = new Ban();
+
+            // ゲーム終了にする
+            numOfObjects.put("c", 0);
+
+            return;
+        }
     }
 
     /**
-     * ゲームの終了条件であるクッキーが残っているかどうかを判定します．
+     * ゲームの終了条件である Cookie オブジェクトが残っているかどうかを判定します．
      *
      * @return ゲームが続くかどうか
      */

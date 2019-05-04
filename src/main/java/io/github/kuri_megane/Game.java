@@ -52,6 +52,12 @@ public class Game {
 
         while (gameMap.isProceed()){
 
+            // Monster の移動
+            if (gameMap.get(monster.next().getRow(), monster.next().getCol()).isGo()) {
+                gameMap.move(monster, monster.next());
+            }
+
+            // 描画
             playScreen.display(gameMap.createDisplayStrings());
 
         }
