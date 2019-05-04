@@ -11,6 +11,8 @@ import java.util.logging.LogManager;
 
 public class Game {
 
+    private int scoreOfThisGame = 0;
+
     public Game() {
     }
 
@@ -68,5 +70,11 @@ public class Game {
             e.printStackTrace();
         }
 
+        // 獲得した点数(=獲得した Cookie の数)を入れる
+        scoreOfThisGame = pacMan.getScore();
+    }
+
+    public int getScoreOfThisGame(){
+        return scoreOfThisGame;
     }
 }
