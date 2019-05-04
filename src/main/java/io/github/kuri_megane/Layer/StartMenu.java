@@ -5,9 +5,8 @@ import jline.TerminalFactory;
 import jline.console.ConsoleReader;
 
 import java.io.IOException;
-import java.util.Scanner;
 
-public class StartMenu implements BackLayer {
+public class StartMenu extends Thread implements BackLayer {
 
     private int consoleHeight = 0;
     private int consoleWidth = 0;
@@ -68,11 +67,20 @@ public class StartMenu implements BackLayer {
      * @return 入力された文字列
      */
     public String inputName(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Your Name > ");
-        String inputName = scanner.nextLine();
+
+        String inputName = "";
+        ConsoleReader console = null;
+
+        try {
+            console = new ConsoleReader();
+            console.setPrompt("Your Name > ");
+            inputName = console.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.println(inputName);
-        scanner.close();
+
         return inputName;
     }
 }
