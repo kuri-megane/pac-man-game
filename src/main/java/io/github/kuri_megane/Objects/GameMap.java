@@ -1,5 +1,7 @@
 package io.github.kuri_megane.Objects;
 
+import io.github.kuri_megane.Point;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +35,9 @@ public class GameMap {
     public void setUp() {
         strGameMap = new String[][]{
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-                {"w", "c", "c", "c", "c", "m", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
-                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-                {"w", "p", "c", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
+                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
+                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "c", "w"},
+                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"}
         };
     }
@@ -76,12 +78,12 @@ public class GameMap {
 
                 // パックマン
                 if (strGameMap[row][col].equals("p")) {
-                    gameMap[row][col] = new PacMan();
+                    gameMap[row][col] = new PacMan(row, col);
                     continue;
                 }
                 // モンスター
                 if (strGameMap[row][col].equals("m")) {
-                    gameMap[row][col] = new Monster();
+                    gameMap[row][col] = new Monster(row, col);
                     continue;
                 }
 
@@ -118,18 +120,39 @@ public class GameMap {
     /**
      * パックマンが通過した位置のオブジェクトを書き換えます．
      *
-     * @param row 行
-     * @param col 列
+     * @param obj   移動するゲームオブジェクト
+     * @param after 移動後の座標
      */
-    public void rewrite(int row, int col) {
-        if (gameMap[row][col] instanceof Cookie) {
+    public void move(MovingObjects obj, Point after) {
 
-            // 書き換えの実施
-            gameMap[row][col] = new Nothing();
+        // Nothing オブジェクトなら
+        if (gameMap[after.getRow()][after.getCol()] instanceof Nothing) {
+            // 移動元 書き換え
+            gameMap[obj.getRow()][obj.getCol()] = new Nothing();
+            // 移動先 書き換え
+            gameMap[after.getRow()][after.getCol()] = (GameObjects) obj;
+            // MovingObject の座標更新
+            obj.setRow(after.getRow());
+            obj.setCol(after.getCol());
 
-            // オブジェクト数も減らす
-            numOfObjects.put("c", numOfObjects.get("c") - 1);
+            return;
         }
+
+        // Cookie オブジェクトなら
+        if (gameMap[after.getRow()][after.getCol()] instanceof Cookie) {
+            // 移動元 書き換え
+            gameMap[obj.getRow()][obj.getCol()] = new Nothing();
+            // 移動先 書き換え
+            gameMap[after.getRow()][after.getCol()] = (GameObjects) obj;
+            // MovingObject の座標更新
+            obj.setRow(after.getRow());
+            obj.setCol(after.getCol());
+            // クッキーの数を減らす
+            numOfObjects.put("c", numOfObjects.get("c") - 1);
+
+            return;
+        }
+
     }
 
     /**
@@ -147,31 +170,34 @@ public class GameMap {
 
     /**
      * ゲームマップの高さを取得します．
+     *
      * @return ゲームマップの高さの値
      */
-    public int getGameMapHeight(){
+    public int getGameMapHeight() {
         return gameMapHeight;
     }
 
     /**
      * ゲームマップの幅を取得します．
+     *
      * @return ゲームマップの幅の値
      */
-    public int getGameMapWidth(){
+    public int getGameMapWidth() {
         return gameMapWidth;
     }
 
     /**
      * 描画用の文字列を整形します．
+     *
      * @return ゲームオブジェクトが文字に変換された描画文字列
      */
-    public String createDisplayStrings(){
+    public String createDisplayStrings() {
 
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int row = 0; row < getGameMapHeight(); row++) {
             for (int col = 0; col < getGameMapWidth(); col++) {
-                stringBuilder.append(get(row,col).getChar());
+                stringBuilder.append(get(row, col).getChar());
             }
             stringBuilder.append("%n");
         }

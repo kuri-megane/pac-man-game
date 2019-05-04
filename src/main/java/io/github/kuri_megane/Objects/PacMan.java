@@ -1,12 +1,15 @@
 package io.github.kuri_megane.Objects;
 
-public class PacMan implements GameObjects {
+import io.github.kuri_megane.Point;
+
+public class PacMan extends Point implements GameObjects, MovingObjects {
 
     private static final String defaultChar = "●";
     private static final boolean goFlag = true;
     private static final String key = "p";
 
-    public PacMan() {
+    public PacMan(int row, int col) {
+        super(row, col);
     }
 
     public String getChar() {

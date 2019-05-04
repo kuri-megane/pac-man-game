@@ -1,12 +1,15 @@
 package io.github.kuri_megane.Objects;
 
-public class Monster implements GameObjects {
+import io.github.kuri_megane.Point;
+
+public class Monster extends Point implements GameObjects, MovingObjects  {
 
     private static final String displayChar = "×";
     private static final boolean goFlag = false;
     private static final String key = "m";
 
-    public Monster() {
+    public Monster(int row, int col) {
+        super(row, col);
     }
 
     public String getChar() {

@@ -1,5 +1,6 @@
 package io.github.kuri_megane.Objects;
 
+import io.github.kuri_megane.Point;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -13,11 +14,11 @@ import static org.hamcrest.Matchers.*;
 public class GameMapTest {
 
     private String[][] strGameMapTest = new String[][]{
-            {"p", "c", "m", "w", "n", "n", "", "", "", "", "", "", "", "", "", "", ""},
-            {"p", "c", "m", "w", "n", "n", "", "", "", "", "", "", "", "", "", "", ""},
-            {"p", "c", "m", "w", "n", "n", "", "", "", "", "", "", "", "", "", "", ""},
-            {"p", "c", "m", "w", "n", "n", "", "", "", "", "", "", "", "", "", "", ""},
-            {"p", "c", "m", "w", "n", "n", "", "", "", "", "", "", "", "", "", "", ""},
+            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
     };
 
     Object getNumOfObjectsByReflection(GameMap obj) throws Exception {
@@ -43,9 +44,9 @@ public class GameMapTest {
 
         String[][] expected = new String[][]{
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-                {"w", "c", "c", "c", "c", "m", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
-                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-                {"w", "p", "c", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
+                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
+                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "c", "w"},
+                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"}
         };
 
@@ -97,23 +98,23 @@ public class GameMapTest {
 
         // XXX: 見にくい
         GameObjects[][] expected = new GameObjects[][]{
-                {new PacMan(), new Cookie(), new Monster(), new Wall(), new Nothing(),
+                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(),},
-                {new PacMan(), new Cookie(), new Monster(), new Wall(), new Nothing(),
+                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(),},
-                {new PacMan(), new Cookie(), new Monster(), new Wall(), new Nothing(),
+                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(),},
-                {new PacMan(), new Cookie(), new Monster(), new Wall(), new Nothing(),
+                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(),},
-                {new PacMan(), new Cookie(), new Monster(), new Wall(), new Nothing(),
+                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
                         new Nothing(), new Nothing(),},
@@ -137,10 +138,9 @@ public class GameMapTest {
         // ここで例外発生の可能性あり
         Map<String, Integer> actual = (Map<String, Integer>) getNumOfObjectsByReflection(gameMap);
 
-        assertThat(actual, hasEntry("w", 53));
-        assertThat(actual, hasEntry("c", 29));
-        assertThat(actual, hasEntry("p", 1));
-        assertThat(actual, hasEntry("m", 1));
+        assertThat(actual, hasEntry("w", 52));
+        assertThat(actual, hasEntry("c", 28));
+        assertThat(actual, hasEntry("n", 5));
 
     }
 
@@ -165,12 +165,21 @@ public class GameMapTest {
     }
 
     @Test
-    public void testRewrite() {
+    public void testMove() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
-        gameMap.rewrite(0, 1);
 
-        assertThat(gameMap.get(0, 1), Matchers.<GameObjects>instanceOf(Nothing.class));
+        // 移動前
+        PacMan pacMan = new PacMan(4,1);
+
+        // 移動後
+        gameMap.move(pacMan, new Point(4,2));
+
+        // 移動前は Nothing オブジェクトに
+        assertThat(gameMap.get(4, 1), Matchers.<GameObjects>instanceOf(Nothing.class));
+
+        // 移動後は PacMan が配置される
+        assertThat(gameMap.get(4, 2), Matchers.<GameObjects>instanceOf(PacMan.class));
 
     }
 
@@ -178,10 +187,11 @@ public class GameMapTest {
     public void testRewriteFail() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
-        gameMap.rewrite(0, 0);
+        PacMan pacMan = new PacMan(1,1);
 
-        // クッキーでないところを書き変えることはできない
-        assertThat(gameMap.get(0, 0), Matchers.<GameObjects>instanceOf(PacMan.class));
+        // Wall オブジェクトは書き換え不可
+        gameMap.move(pacMan, new Point(0,1));
+        assertThat(gameMap.get(0, 0), Matchers.<GameObjects>instanceOf(Wall.class));
 
     }
 
@@ -197,12 +207,13 @@ public class GameMapTest {
     public void testIsProceedFalse() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
+        PacMan pacMan = new PacMan(0,2);
 
-        gameMap.rewrite(0, 1);
-        gameMap.rewrite(1, 1);
-        gameMap.rewrite(2, 1);
-        gameMap.rewrite(3, 1);
-        gameMap.rewrite(4, 1);
+        gameMap.move(pacMan, new Point(0,1));
+        gameMap.move(pacMan, new Point(1,1));
+        gameMap.move(pacMan, new Point(2,1));
+        gameMap.move(pacMan, new Point(3,1));
+        gameMap.move(pacMan, new Point(4,1));
 
         assertThat(gameMap.isProceed(), is(false));
 
@@ -214,11 +225,11 @@ public class GameMapTest {
         GameMap gameMap = new GameMap(strGameMapTest);
         String actual = gameMap.createDisplayStrings();
 
-        String expected = "●★×\u001B[00;44m \u001B[00m             %n"
-                + "●★×\u001B[00;44m \u001B[00m             %n"
-                + "●★×\u001B[00;44m \u001B[00m             %n"
-                + "●★×\u001B[00;44m \u001B[00m             %n"
-                + "●★×\u001B[00;44m \u001B[00m             %n";
+        String expected = "\u001B[00;44m \u001B[00m★               %n"
+                + "\u001B[00;44m \u001B[00m★               %n"
+                + "\u001B[00;44m \u001B[00m★               %n"
+                + "\u001B[00;44m \u001B[00m★               %n"
+                + "\u001B[00;44m \u001B[00m★               %n";
 
         assertThat(actual, is(expected));
 
