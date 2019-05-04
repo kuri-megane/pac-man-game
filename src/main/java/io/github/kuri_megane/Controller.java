@@ -49,11 +49,9 @@ public class Controller implements NativeKeyListener {
 
     // キーが離された
     public void nativeKeyReleased(NativeKeyEvent e) {
-        System.out.println(e.paramString());
     }
 
     // キーがタイプされた
     public void nativeKeyTyped(NativeKeyEvent e) {
-        System.out.println(e.paramString());
     }
 }
