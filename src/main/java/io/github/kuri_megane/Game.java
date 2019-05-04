@@ -25,11 +25,11 @@ public class Game {
         PlayScreen playScreen = new PlayScreen();
 
         // パックマン配置
-        PacMan pacMan = new PacMan(1,1);
+        PacMan pacMan = new PacMan(1, 1);        // XXX:(1,1):意味無し, TODO:Pointクラスの修正
         gameMap.move(pacMan, new Point(1,2));
 
         // モンスター配置
-        Monster monster = new Monster(3, 1);
+        Monster monster = new Monster(3, 1);    // XXX:(3,1):意味無し, TODO:Pointクラスの修正
         gameMap.move(monster, new Point(3,2));
 
         // コントローラー配置
