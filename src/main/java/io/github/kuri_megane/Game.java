@@ -11,9 +11,6 @@ import java.util.logging.LogManager;
 
 public class Game {
 
-    private GameMap gameMap;
-    private PlayScreen playScreen;
-
     public Game() {
     }
 
@@ -22,8 +19,8 @@ public class Game {
      */
     public void run() {
 
-        gameMap = new GameMap();
-        playScreen = new PlayScreen();
+        GameMap gameMap = new GameMap();
+        PlayScreen playScreen = new PlayScreen();
 
         // パックマン配置
         PacMan pacMan = new PacMan(1,1);
@@ -50,6 +47,7 @@ public class Game {
         // 描画
         playScreen.display(gameMap.createDisplayStrings());
 
+        // Cookie がある限り
         while (gameMap.isProceed()){
 
             // Monster の移動
@@ -60,6 +58,14 @@ public class Game {
             // 描画
             playScreen.display(gameMap.createDisplayStrings());
 
+        }
+
+        // コントローラー削除
+        GlobalScreen.removeNativeKeyListener(controller);
+        try {
+            GlobalScreen.unregisterNativeHook();
+        } catch (NativeHookException e) {
+            e.printStackTrace();
         }
 
     }
