@@ -33,24 +33,6 @@ public class PlayScreen extends Thread implements BackLayer {
     }
 
     /**
-     * [テスト用] 取得したコンソールサイズの高さの値を取り出します.
-     *
-     * @return コンソールサイズの高さ
-     */
-    public int getConsoleHeight() {
-        return consoleHeight;
-    }
-
-    /**
-     * [テスト用] 取得したコンソールサイズの幅の値を取り出します.
-     *
-     * @return コンソールサイズの幅
-     */
-    public int getConsoleWidth() {
-        return consoleWidth;
-    }
-
-    /**
      * ゲームのプレイ画面 (つまり ゲームマップ) の描画
      *
      * @param strings 描画する文字列

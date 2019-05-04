@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,14 +27,26 @@ public class PlayScreenTest {
         System.setOut(stdout);
     }
 
+    Object getConsoleHeightByReflection(PlayScreen obj) throws Exception {
+        Field field = PlayScreen.class.getDeclaredField("consoleHeight");
+        field.setAccessible(true);
+        return field.get(obj);
+    }
+
+    Object getConsoleWidthByReflection(PlayScreen obj) throws Exception {
+        Field field = PlayScreen.class.getDeclaredField("consoleWidth");
+        field.setAccessible(true);
+        return field.get(obj);
+    }
+
     @Test
-    public void testGetConsoleSize() {
+    public void testGetConsoleSize() throws Exception {
 
         PlayScreen playScreen = new PlayScreen();
 
         playScreen.getConsoleSize();
-        int resultHeight = playScreen.getConsoleHeight();
-        int resultWidth = playScreen.getConsoleWidth();
+        int resultHeight = (Integer) getConsoleHeightByReflection(playScreen);
+        int resultWidth = (Integer) getConsoleWidthByReflection(playScreen);
 
         // コンソールの高さは10以上
         assertThat(resultHeight, is(greaterThan(10)));
