@@ -11,7 +11,8 @@ public class Main {
         // スタートメニューの表示
         StartMenu startMenu = new StartMenu();
         startMenu.display("");
-        gamaData.setName(startMenu.inputName());
+        String name = startMenu.inputName();
+        gamaData.setName(name);
 
         // 1ゲーム目
         Game game = new Game();
@@ -24,7 +25,8 @@ public class Main {
         endRoll.createPlayerResult(gamaData);
         endRoll.display("");
 
+        // 終了
+        // XXX: スレッドがうまく終了できていないため
         System.exit(0);
-
     }
 }
