@@ -10,12 +10,13 @@ public class Main {
         // スタートメニューの表示
         StartMenu startMenu = new StartMenu();
         startMenu.display("");
+        gamaData.setName(startMenu.inputName());
 
         // 1ゲーム目
         Game game = new Game();
         game.run();
         int score = game.getScoreOfThisGame();
         gamaData.setScore(score + gamaData.getScore());
-        
+
     }
 }
