@@ -39,6 +39,15 @@ public class PlayScreen extends Thread implements BackLayer {
      */
     public void display(String strings) {
 
+        // クリア
+        try {
+            console.clearScreen();
+            console.flush();
+        }
+        catch (IOException e){
+            e.getMessage();
+        }
+
         // 表示
         System.out.printf(strings);
 
@@ -47,15 +56,6 @@ public class PlayScreen extends Thread implements BackLayer {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-
-        // クリア
-        try {
-            console.clearScreen();
-            console.flush();
-        }
-        catch (IOException e){
-            e.getMessage();
         }
     }
 }
