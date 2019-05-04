@@ -62,6 +62,13 @@ public class Game {
 
         }
 
+        // 一時停止
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // コントローラー削除
         GlobalScreen.removeNativeKeyListener(controller);
         try {
