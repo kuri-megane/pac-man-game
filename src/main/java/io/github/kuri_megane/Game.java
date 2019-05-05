@@ -53,11 +53,22 @@ public class Game {
         playScreen.display(gameMap.createDisplayStrings());
 
         // Cookie がある限り
-        while (gameMap.isProceed()){
+        while (gameMap.isProceed()) {
 
-            // Monster の移動
-            if (gameMap.get(monster.next().getRow(), monster.next().getCol()).isGo()) {
-                gameMap.move(monster, monster.next());
+            // Monster の移動，移動できるまでずっと
+            while (true) {
+
+                // 移動先の候補
+                Point next = new Point(monster.next().getRow(), monster.next().getCol());
+
+                // 移動できそうであれば
+                if (gameMap.get(next.getRow(), next.getCol()).isGo()) {
+
+                    // 移動の実施
+                    gameMap.move(monster, next);
+
+                    break;
+                }
             }
 
             // 描画
@@ -84,7 +95,7 @@ public class Game {
         scoreOfThisGame = pacMan.getScore();
     }
 
-    public int getScoreOfThisGame(){
+    public int getScoreOfThisGame() {
         return scoreOfThisGame;
     }
 }
