@@ -5,10 +5,13 @@ import io.github.kuri_megane.Objects.PacMan;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
+import java.util.logging.Logger;
+
 public class Controller implements NativeKeyListener {
 
     private GameMap gameMap;
     private PacMan pacMan;
+    private Logger logger = Logger.getLogger(Controller.class.getName());
 
     public Controller(GameMap gameMap, PacMan pacMan) {
         this.gameMap = gameMap;
@@ -17,6 +20,8 @@ public class Controller implements NativeKeyListener {
 
     // キーが押された
     public void nativeKeyPressed(NativeKeyEvent e) {
+
+        logger.info(Integer.toString(e.getRawCode()));
 
         // 左矢印キー
         if (e.getRawCode() == 123) {

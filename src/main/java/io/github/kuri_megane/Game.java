@@ -41,7 +41,9 @@ public class Game {
             }
         }
         GlobalScreen.addNativeKeyListener(controller);
-        LogManager.getLogManager().reset();
+
+        // 一時的に変更
+        // LogManager.getLogManager().reset();
     }
 
     /**
