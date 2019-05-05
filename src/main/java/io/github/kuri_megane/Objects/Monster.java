@@ -57,27 +57,8 @@ public class Monster extends Point implements GameObjects, MovingObjects {
         Point after = new Point(0, 0);
         Random random = new Random();
 
-        // どこからどれだけ移動したか計算
-        int movementRow = super.getRow() - before.getRow();
-        int movementCol = super.getCol() - before.getCol();
-        int nextMovementRow;
-        int nextMovementCol;
-
-        while (true) {
-            nextMovementRow = random.nextInt(3) - 1;
-            if (nextMovementRow != movementRow) {
-                break;
-            }
-        }
-        while (true) {
-            nextMovementCol = random.nextInt(3) - 1;
-            if (nextMovementCol != movementCol) {
-                break;
-            }
-        }
-
-        after.setRow(getRow() + nextMovementRow);
-        after.setCol(getCol() + nextMovementCol);
+        after.setRow(getRow() + random.nextInt(3) - 1);
+        after.setCol(getCol() + random.nextInt(3) - 1);
 
         return after;
     }
