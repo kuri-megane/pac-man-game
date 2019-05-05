@@ -21,12 +21,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.0</version>
         </dependency>
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.1stleg/jnativehook &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.1stleg</groupId>-->
-        <!--            <artifactId>jnativehook</artifactId>-->
-        <!--            <version>2.1.0</version>-->
-        <!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.1stleg/jnativehook -->
+        <dependency>
+            <groupId>com.1stleg</groupId>
+            <artifactId>jnativehook</artifactId>
+            <version>2.1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hamcrest</groupId>
