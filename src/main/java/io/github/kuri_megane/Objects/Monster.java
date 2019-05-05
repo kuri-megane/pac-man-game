@@ -32,16 +32,10 @@ public class Monster extends Point implements GameObjects, MovingObjects {
         Point after = new Point(0, 0);
         Random random = new Random();
 
-        // 約半分の確率で横にずらす
-        if (random.nextBoolean()) {
-            after.setRow(getRow() + random.nextInt(3) - 1);
-            after.setCol(getCol());
-            return after;
-        }
-
-        // 縦にずらす
-        after.setRow(getRow());
+        // 最大で8近傍にずれる
+        after.setRow(getRow() + random.nextInt(3) - 1);
         after.setCol(getCol() + random.nextInt(3) - 1);
+
         return after;
     }
 
