@@ -5,6 +5,7 @@ import io.github.kuri_megane.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Monster extends Point implements GameObjects, MovingObjects {
 
@@ -55,7 +56,42 @@ public class Monster extends Point implements GameObjects, MovingObjects {
      *
      * @return 次の移動先の座標
      */
+
     public Point next(GameMap gameMap, PacMan pacMan) {
+
+        Random random = new Random();
+        Point next;
+
+        // 約半分の確率で
+        if (random.nextBoolean()) {
+            next = nextRondom();
+            return next;
+        }
+
+        next = nextChasePacMan(gameMap, pacMan);
+        return next;
+    }
+
+    /**
+     * Monster の次の移動先をランダムに決めます．
+     *
+     * @return 次の移動先の座標
+     */
+    private Point nextRondom() {
+        Point after = new Point(0, 0);
+        Random random = new Random();
+        after.setRow(getRow() + random.nextInt(3) - 1);
+        after.setCol(getCol() + random.nextInt(3) - 1);
+
+        return after;
+    }
+
+    /**
+     * Monster の次の移動先をパックマンを追うように決めます．
+     *
+     * @return 次の移動先の座標
+     */
+    private Point nextChasePacMan(GameMap gameMap, PacMan pacMan) {
 
         // 上右下左の4方向
         int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
@@ -69,7 +105,9 @@ public class Monster extends Point implements GameObjects, MovingObjects {
             int nextCol = this.getCol() + dir[1];
 
             // 障害物がある所へは行かない
-            if (!gameMap.get(nextRow, nextCol).isGo()) continue;
+            if (!gameMap.get(nextRow, nextCol).isGo()) {
+                continue;
+            }
 
             // 直前の座標は候補に入れない
             if (nextRow == before.getRow() && nextCol == before.getCol()) {
