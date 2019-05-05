@@ -1,72 +1,44 @@
 package io.github.kuri_megane.Layer;
 
-import jline.Terminal;
-import jline.TerminalFactory;
 import jline.console.ConsoleReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class StartMenu extends Thread implements BackLayer {
+public class StartMenu extends Display {
 
-    private int consoleHeight = 0;
-    private int consoleWidth = 0;
-    private ConsoleReader console;
+    private static final List<String> title = new ArrayList<String>();
 
-    // XXX: ここにベタ書きするの良くない
-    private static final String strDisplay =
-              " ____            __  __              ____                      %n"
-            + "|  _ \\ __ _  ___|  \\/  | __ _ _ __  / ___| __ _ _ __ ___   ___ %n"
-            + "| |_) / _` |/ __| |\\/| |/ _` | '_ \\| |  _ / _` | '_ ` _ \\ / _ \\%n"
-            + "|  __/ (_| | (__| |  | | (_| | | | | |_| | (_| | | | | | |  __/%n"
-            + "|_|   \\__,_|\\___|_|  |_|\\__,_|_| |_|\\____|\\__,_|_| |_| |_|\\___|%n"
-            + "%n"
-            + "                           Ready...?                                %n";
-
-    public StartMenu(){
-        try {
-            console = new ConsoleReader();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
+    public StartMenu() {
+        super();
     }
 
     /**
-     * コンソールサイズを取得します．
-     */
-    public void getConsoleSize(){
-        Terminal terminal = TerminalFactory.get();
-        consoleHeight = terminal.getHeight();
-        consoleWidth = terminal.getWidth();
-    }
-
-    /**
-     * スタートメニューの描画
+     * タイトル文字列の整形
      *
-     * @param strings カスタムで先に表示する文字列
+     * @return タイトル文字列
      */
-    public void display(String strings){
+    public List<String> createTitle() {
 
-        // クリア
-        try {
-            console.clearScreen();
-            console.flush();
-        }
-        catch (IOException e){
-            e.getMessage();
-        }
+        // XXX: ここにベタ書きするの良くない
+        title.add(" ____            __  __              ____                      ");
+        title.add("|  _ \\ __ _  ___|  \\/  | __ _ _ __  / ___| __ _ _ __ ___   ___ ");
+        title.add("| |_) / _` |/ __| |\\/| |/ _` | '_ \\| |  _ / _` | '_ ` _ \\ / _ \\");
+        title.add("|  __/ (_| | (__| |  | | (_| | | | | |_| | (_| | | | | | |  __/");
+        title.add("|_|   \\__,_|\\___|_|  |_|\\__,_|_| |_|\\____|\\__,_|_| |_| |_|\\___|");
+        title.add("%n");
+        title.add("                           Ready...?                                ");
 
-        // 表示
-        System.out.println(strings);
-        System.out.printf(strDisplay);
-
+        return title;
     }
 
     /**
      * ユーザーの名前を入力してもらう
+     *
      * @return 入力された文字列
      */
-    public String inputName(){
+    public String inputName() {
 
         String inputName = "";
         ConsoleReader console = null;

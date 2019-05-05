@@ -10,7 +10,8 @@ public class Main {
 
         // スタートメニューの表示
         StartMenu startMenu = new StartMenu();
-        startMenu.display("");
+        startMenu.getConsoleSize();
+        startMenu.display(startMenu.createTitle());
         String name = startMenu.inputName();
         gamaData.setName(name);
 
@@ -22,8 +23,8 @@ public class Main {
 
         // エンドロール
         EndRoll endRoll = new EndRoll();
-        endRoll.createPlayerResult(gamaData);
-        endRoll.display("");
+        endRoll.getConsoleSize();
+        endRoll.display(endRoll.createResultStrings(gamaData));
 
         // 終了
         // XXX: スレッドがうまく終了できていないため

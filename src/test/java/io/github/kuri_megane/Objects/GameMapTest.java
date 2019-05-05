@@ -5,6 +5,8 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -223,13 +225,14 @@ public class GameMapTest {
     public void testCreateDisplayStrings() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
-        String actual = gameMap.createDisplayStrings();
+        List<String> actual = gameMap.createDisplayStrings();
+        List<String> expected = new ArrayList<String>();
 
-        String expected = "\u001B[00;44m \u001B[00m★               %n"
-                + "\u001B[00;44m \u001B[00m★               %n"
-                + "\u001B[00;44m \u001B[00m★               %n"
-                + "\u001B[00;44m \u001B[00m★               %n"
-                + "\u001B[00;44m \u001B[00m★               %n";
+        expected.add("\u001B[00;44m \u001B[00m★               ");
+        expected.add("\u001B[00;44m \u001B[00m★               ");
+        expected.add("\u001B[00;44m \u001B[00m★               ");
+        expected.add("\u001B[00;44m \u001B[00m★               ");
+        expected.add("\u001B[00;44m \u001B[00m★               ");
 
         assertThat(actual, is(expected));
 

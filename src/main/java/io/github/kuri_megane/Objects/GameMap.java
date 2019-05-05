@@ -2,7 +2,9 @@ package io.github.kuri_megane.Objects;
 
 import io.github.kuri_megane.Point;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GameMap {
@@ -212,16 +214,24 @@ public class GameMap {
      *
      * @return ゲームオブジェクトが文字に変換された描画文字列
      */
-    public String createDisplayStrings() {
+    public List<String> createDisplayStrings() {
 
-        StringBuilder stringBuilder = new StringBuilder();
+        // 描画内容の1列分の整形は StringBuilder に頼る
+        StringBuilder line = new StringBuilder();
+
+        // 1列ずつ整形したものを List にする
+        List lines = new ArrayList<String>();
 
         for (int row = 0; row < getGameMapHeight(); row++) {
+
+            // いったんクリア
+            line.setLength(0);
+
             for (int col = 0; col < getGameMapWidth(); col++) {
-                stringBuilder.append(get(row, col).getChar());
+                line.append(get(row, col).getChar());
             }
-            stringBuilder.append("%n");
+            lines.add(line.toString());
         }
-        return stringBuilder.toString();
+        return lines;
     }
 }

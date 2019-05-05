@@ -24,6 +24,9 @@ public class Game {
         GameMap gameMap = new GameMap();
         PlayScreen playScreen = new PlayScreen();
 
+        // コンソールサイズの取得
+        playScreen.getConsoleSize();
+
         // パックマン配置
         PacMan pacMan = new PacMan(1, 1);        // XXX:(1,1):意味無し, TODO:Pointクラスの修正
         gameMap.move(pacMan, new Point(1,2));
