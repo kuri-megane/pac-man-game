@@ -127,7 +127,7 @@ public class GameMap {
      */
     public void move(MovingObjects obj, Point after) {
 
-        // Nothing オブジェクトなら
+        // 移動先が Nothing オブジェクトなら
         if (gameMap[after.getRow()][after.getCol()] instanceof Nothing) {
 
             // 移動元 書き換え
@@ -142,7 +142,7 @@ public class GameMap {
             return;
         }
 
-        // Cookie オブジェクトなら
+        // 移動先が Cookie オブジェクトなら
         if (gameMap[after.getRow()][after.getCol()] instanceof Cookie) {
 
             // 移動元 書き換え
@@ -163,7 +163,7 @@ public class GameMap {
             return;
         }
 
-        // PacMan オブジェクトなら
+        // 移動先が PacMan オブジェクトなら (必然的に obj は Monster)
         if (gameMap[after.getRow()][after.getCol()] instanceof PacMan) {
 
             // 移動元 書き換え
@@ -175,6 +175,23 @@ public class GameMap {
             numOfObjects.put("c", 0);
 
             return;
+        }
+
+        // 移動先が Monster オブジェクトなら
+        if (gameMap[after.getRow()][after.getCol()] instanceof Monster) {
+
+            // 移動するオブジェクトが PacMan ならば
+            if (obj instanceof PacMan) {
+                // 移動元 書き換え
+                gameMap[obj.getRow()][obj.getCol()] = new Nothing();
+                // 移動先 書き換え
+                gameMap[after.getRow()][after.getCol()] = new Ban();
+
+                // ゲーム終了にする
+                numOfObjects.put("c", 0);
+
+                return;
+            }
         }
     }
 
