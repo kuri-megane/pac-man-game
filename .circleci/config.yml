@@ -1,0 +1,7 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: amazoncorretto:8
+    steps:
+      - run: echo 'Hello world!"
