@@ -191,12 +191,37 @@ public class GameMapTest {
     }
 
     @Test
+    public void testPut() {
+
+        GameMap gameMap = new GameMap(strGameMapTest);
+
+        // 配置
+        PacMan pacMan = new PacMan(9, 11);
+        gameMap.put(pacMan);
+
+        assertThat(gameMap.get(9, 11), Matchers.<GameObjects>instanceOf(PacMan.class));
+
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testFail() {
+
+        GameMap gameMap = new GameMap(strGameMapTest);
+
+        // 配置
+        PacMan pacMan = new PacMan(0, 1);
+        gameMap.put(pacMan);
+
+    }
+
+    @Test
     public void testMove() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
 
         // 移動前
         PacMan pacMan = new PacMan(9, 11);
+        gameMap.put(pacMan);
 
         // 移動後
         gameMap.move(pacMan, new Point(9, 12));
@@ -210,12 +235,12 @@ public class GameMapTest {
     }
 
     @Test
-    public void testRewriteFail() {
+    public void testMoveFail() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
         PacMan pacMan = new PacMan(1,1);
 
-        // Wall オブジェクトは書き換え不可
+        // Wall があるところに移動は不可
         gameMap.move(pacMan, new Point(0,1));
         assertThat(gameMap.get(0, 0), Matchers.<GameObjects>instanceOf(Wall.class));
 

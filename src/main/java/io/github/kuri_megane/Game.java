@@ -28,12 +28,12 @@ public class Game {
         playScreen.getConsoleSize();
 
         // パックマン配置
-        PacMan pacMan = new PacMan(9, 11);        // XXX:(1,1):意味無し, TODO:Pointクラスの修正
-        gameMap.move(pacMan, new Point(9, 12));
+        PacMan pacMan = new PacMan(9, 11);
+        gameMap.put(pacMan);
 
         // モンスター配置
-        Monster monster = new Monster(9, 1);    // XXX:(3,1):意味無し, TODO:Pointクラスの修正
-        gameMap.move(monster, new Point(9, 2));
+        Monster monster = new Monster(9, 1);
+        gameMap.put(monster);
 
         // コントローラー配置
         Controller controller = new Controller(gameMap, pacMan);

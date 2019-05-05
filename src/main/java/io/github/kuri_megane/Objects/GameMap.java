@@ -135,7 +135,7 @@ public class GameMap {
     /**
      * MovingObjects が通過した位置のオブジェクトを書き換えます．
      *
-     * @param obj   移動するゲームオブジェクト
+     * @param obj   MovingObjects
      * @param after 移動後の座標
      */
     public void move(MovingObjects obj, Point after) {
@@ -206,6 +206,47 @@ public class GameMap {
                 return;
             }
         }
+    }
+
+    /**
+     * MovingObjects を配置します．
+     *
+     * @param obj MovingObjects
+     */
+    public void put(MovingObjects obj) {
+
+        // 移動先が Nothing オブジェクトなら
+        if (gameMap[obj.getRow()][obj.getCol()] instanceof Nothing) {
+
+            // 配置先 書き換え
+            gameMap[obj.getRow()][obj.getCol()] = (GameObjects) obj;
+
+            // MovingObject の座標更新
+            obj.setRow(obj.getRow());
+            obj.setCol(obj.getCol());
+
+            return;
+        }
+
+        // 移動先が Cookie オブジェクトなら
+        if (gameMap[obj.getRow()][obj.getCol()] instanceof Cookie) {
+
+            // 配置先 書き換え
+            gameMap[obj.getRow()][obj.getCol()] = (GameObjects) obj;
+
+            // MovingObject の座標更新
+            obj.setRow(obj.getRow());
+            obj.setCol(obj.getCol());
+
+            // クッキーの数を減らす
+            numOfObjects.put("c", numOfObjects.get("c") - 1);
+
+            // 得点付与
+            obj.addScore();
+
+            return;
+        }
+        throw new IndexOutOfBoundsException("配置先の座標の GameObjects を確認してください");
     }
 
     /**
