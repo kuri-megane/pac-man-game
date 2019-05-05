@@ -18,8 +18,10 @@ public class Main {
         // 1ゲーム目
         Game game = new Game();
         game.run();
-        int score = game.getScoreOfThisGame();
-        gamaData.setScore(score + gamaData.getScore());
+        int playerScore = game.getPlayerScore();
+        int monsterScore = game.getMonsterScore();
+        gamaData.setPlayerScore(playerScore + gamaData.getPlayerScore());
+        gamaData.setMonsterScore(monsterScore + gamaData.getMonsterScore());
 
         // エンドロール
         EndRoll endRoll = new EndRoll();

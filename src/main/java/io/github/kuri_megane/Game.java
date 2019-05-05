@@ -11,7 +11,8 @@ import java.util.logging.LogManager;
 
 public class Game {
 
-    private int scoreOfThisGame = 0;
+    private int playerScore = 0;
+    private int monsterScore = 0;
 
     public Game() {
     }
@@ -116,10 +117,18 @@ public class Game {
         }
 
         // 獲得した点数(=獲得した Cookie の数)を入れる
-        scoreOfThisGame = pacMan.getScore();
+        playerScore = pacMan.getScore();
+        monsterScore += monster1.getScore();
+        monsterScore += monster2.getScore();
+        monsterScore += monster3.getScore();
+        monsterScore += monster4.getScore();
     }
 
-    public int getScoreOfThisGame() {
-        return scoreOfThisGame;
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    public int getMonsterScore() {
+        return monsterScore;
     }
 }
