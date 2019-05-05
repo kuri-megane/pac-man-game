@@ -10,7 +10,7 @@ import java.util.Map;
 public class GameMap {
 
     // ゲームのオブジェクトの配置 幅と高さ
-    private final int gameMapHeight = 17;
+    private final int gameMapHeight = 18;
     private final int gameMapWidth = 23;
     // ゲームのオブジェクトの配置 (文字型)
     private String[][] strGameMap = new String[gameMapHeight][gameMapWidth];
@@ -51,6 +51,7 @@ public class GameMap {
                 {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "c", "c", "w", "c", "c", "c", "w", "c", "w", "w", "w",},
                 {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "c", "c", "w",},
                 {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "w", "w", "w",},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "c", "c", "w", "c", "w", "c", "w", "w", "w",},
                 {"w", "w", "w", "c", "w", "w", "w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "w", "c", "w", "c", "c", "c", "w",},
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w",},
         };
