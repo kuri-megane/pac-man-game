@@ -3,7 +3,8 @@ package io.github.kuri_megane.Objects;
 import io.github.kuri_megane.Objects.Color.Purple;
 import io.github.kuri_megane.Point;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Monster extends Point implements GameObjects, MovingObjects {
 
@@ -54,15 +55,63 @@ public class Monster extends Point implements GameObjects, MovingObjects {
      *
      * @return 次の移動先の座標
      */
-    public Point next() {
+    public Point next(GameMap gameMap, PacMan pacMan) {
 
-        Point after = new Point(0, 0);
-        Random random = new Random();
+        // 上右下左の4方向
+        int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
-        after.setRow(getRow() + random.nextInt(3) - 1);
-        after.setCol(getCol() + random.nextInt(3) - 1);
+        List<Point> candidates = new ArrayList<Point>();
 
-        return after;
+        for (int[] dir : directions) {
+
+            // 4方向について探索
+            int nextRow = this.getRow() + dir[0];
+            int nextCol = this.getCol() + dir[1];
+
+            // 障害物がある所へは行かない
+            if (!gameMap.get(nextRow, nextCol).isGo()) continue;
+
+            // 直前の座標は候補に入れない
+            if (nextRow == before.getRow() && nextCol == before.getCol()) {
+                continue;
+            }
+
+            candidates.add(new Point(nextRow, nextCol));
+        }
+
+        // 直前座標以外に選択肢が無いときは引き返す
+        if (candidates.size() == 0) {
+            return new Point(before.getRow(), before.getCol());
+        }
+
+        // pacManとの距離スコアを計算して最も良いスコアの方へ移動させる
+        Point bestMove = candidates.get(0);
+        double bestDistanceScore = calcDistance(pacMan, candidates.get(0));
+
+        for (int i = 1; i < candidates.size(); i++) {
+
+            Point tmpMove = candidates.get(i);
+            double tmpDistanceScore = calcDistance(pacMan, tmpMove);
+
+            // 最もスコアの小さい(pacManに近い)動きを求める
+            if (tmpDistanceScore < bestDistanceScore) {
+                bestMove = tmpMove;
+                bestDistanceScore = tmpDistanceScore;
+            }
+        }
+        return bestMove;
+    }
+
+    /**
+     * PacManとMonsterの移動先候補との距離を計算する
+     * 縦方向よりも横方向の重みを大きくして横に優先して動くようにしている
+     *
+     * @param pacMan パックマン
+     * @param p      移動先候補の座標
+     * @return 距離ベースのスコア
+     */
+    private double calcDistance(PacMan pacMan, Point p) {
+        return Math.pow(pacMan.getRow() - p.getRow(), 2) + (2 * Math.pow(pacMan.getCol() - p.getCol(), 2));
     }
 
     /**
