@@ -14,4 +14,6 @@ public interface MovingObjects {
 
     int getScore();
 
+    void failToMove();
+
 }

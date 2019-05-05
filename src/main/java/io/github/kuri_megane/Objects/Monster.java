@@ -46,4 +46,11 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     public int getScore(){
         return score;
     }
+
+    /**
+     * 移動先に移動できなかったときに使う
+     */
+    public void failToMove() {
+
+    }
 }

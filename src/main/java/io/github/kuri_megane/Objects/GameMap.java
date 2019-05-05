@@ -206,6 +206,9 @@ public class GameMap {
                 return;
             }
         }
+
+        // それ以外は移動できないときなので
+        obj.failToMove();
     }
 
     /**

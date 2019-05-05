@@ -22,6 +22,7 @@ public class Controller implements NativeKeyListener {
         if (e.getRawCode() == 123) {
             if (gameMap.get(pacMan.getRow(), pacMan.getCol() - 1).isGo()) {
                 gameMap.move(pacMan, new Point(pacMan.getRow(), pacMan.getCol() - 1));
+                return;
             }
         }
 
@@ -29,6 +30,7 @@ public class Controller implements NativeKeyListener {
         if (e.getRawCode() == 124) {
             if (gameMap.get(pacMan.getRow(), pacMan.getCol() + 1).isGo()) {
                 gameMap.move(pacMan, new Point(pacMan.getRow(), pacMan.getCol() + 1));
+                return;
             }
         }
 
@@ -36,6 +38,7 @@ public class Controller implements NativeKeyListener {
         if (e.getRawCode() == 125) {
             if (gameMap.get(pacMan.getRow() + 1, pacMan.getCol()).isGo()) {
                 gameMap.move(pacMan, new Point(pacMan.getRow() + 1, pacMan.getCol()));
+                return;
             }
         }
 
@@ -43,8 +46,11 @@ public class Controller implements NativeKeyListener {
         if (e.getRawCode() == 126) {
             if (gameMap.get(pacMan.getRow() - 1, pacMan.getCol()).isGo()) {
                 gameMap.move(pacMan, new Point(pacMan.getRow() - 1, pacMan.getCol()));
+                return;
             }
         }
+
+        pacMan.failToMove();
     }
 
     // キーが離された
