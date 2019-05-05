@@ -20,6 +20,20 @@ public class EndRoll extends Display {
      */
     public List<String> createResultStrings(GamaData gamaData) {
 
+        String strResult = "";
+
+        // プレイヤーの勝敗を決める
+        if (gamaData.getPlayerScore() < gamaData.getMonsterScore()) {
+            strResult = "You losing...";
+        }
+        if (gamaData.getPlayerScore() > gamaData.getMonsterScore()) {
+            strResult = "You WIN !!";
+        }
+        if (gamaData.getPlayerScore() == gamaData.getMonsterScore()) {
+            strResult = "DRAW";
+        }
+
+
         // XXX: ここにベタ書きするの良くない
         title.add(" ____            __  __              ____                      ");
         title.add("|  _ \\ __ _  ___|  \\/  | __ _ _ __  / ___| __ _ _ __ ___   ___ ");
@@ -30,7 +44,10 @@ public class EndRoll extends Display {
         title.add("                              End                                ");
         title.add("");
         title.add("                      Name: " + gamaData.getName());
-        title.add("                     Score: " + gamaData.getScore());
+        title.add("                Your Score: " + gamaData.getPlayerScore());
+        title.add("             Monster Score: " + gamaData.getMonsterScore());
+        title.add("");
+        title.add("                         " + strResult);
 
         return title;
     }
