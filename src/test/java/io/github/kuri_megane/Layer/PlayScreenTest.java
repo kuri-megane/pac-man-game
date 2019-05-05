@@ -35,7 +35,7 @@ public class PlayScreenTest {
         input.add("You say good bye!");
         input.add("I say hello!");
 
-        playScreen.display(input);
+        playScreen.display(input, 0);
 
         String[] result = out.toString().split(System.lineSeparator());
 

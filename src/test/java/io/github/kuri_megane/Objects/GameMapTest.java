@@ -34,6 +34,8 @@ public class GameMapTest {
             {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
             {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
             {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
     };
 
     Object getNumOfObjectsByReflection(GameMap obj) throws Exception {
@@ -59,6 +61,7 @@ public class GameMapTest {
 
         String[][] expected = new String[][]{
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w",},
+                {"w", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "w",},
                 {"w", "c", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "c", "c", "c", "w",},
                 {"w", "c", "c", "w", "w", "c", "w", "w", "c", "c", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "w",},
                 {"w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "w",},
@@ -75,6 +78,7 @@ public class GameMapTest {
                 {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "w", "w", "w",},
                 {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "c", "c", "w", "c", "w", "c", "w", "w", "w",},
                 {"w", "w", "w", "c", "w", "w", "w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "w", "c", "w", "c", "c", "c", "w",},
+                {"w", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "w",},
                 {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w",},
         };
 
@@ -143,6 +147,7 @@ public class GameMapTest {
                 {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
                 {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
                 {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
                 {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),}
         };
 
@@ -164,9 +169,9 @@ public class GameMapTest {
         // ここで例外発生の可能性あり
         Map<String, Integer> actual = (Map<String, Integer>) getNumOfObjectsByReflection(gameMap);
 
-        assertThat(actual, hasEntry("w", 251));
+        assertThat(actual, hasEntry("w", 255));
         assertThat(actual, hasEntry("c", 142));
-        assertThat(actual, hasEntry("n", 21));
+        assertThat(actual, hasEntry("n", 63));
 
     }
 
@@ -238,10 +243,10 @@ public class GameMapTest {
     public void testMoveFail() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
-        PacMan pacMan = new PacMan(1,1);
+        PacMan pacMan = new PacMan(1, 1);
 
         // Wall があるところに移動は不可
-        gameMap.move(pacMan, new Point(0,1));
+        gameMap.move(pacMan, new Point(0, 1));
         assertThat(gameMap.get(0, 0), Matchers.<GameObjects>instanceOf(Wall.class));
 
     }
@@ -258,7 +263,7 @@ public class GameMapTest {
     public void testIsProceedFalse() {
 
         GameMap gameMap = new GameMap(strGameMapTest);
-        PacMan pacMan = new PacMan(0,2);
+        PacMan pacMan = new PacMan(0, 2);
 
         gameMap.move(pacMan, new Point(0, 2));
         gameMap.move(pacMan, new Point(1, 2));
@@ -277,25 +282,12 @@ public class GameMapTest {
         List<String> actual = gameMap.createDisplayStrings();
         List<String> expected = new ArrayList<String>();
 
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
-
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
-        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        for (int i = 0; i < 5; i++) {
+            expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
+        }
+        for (int i = 0; i < 15; i++) {
+            expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        }
 
         assertThat(actual, is(expected));
 
