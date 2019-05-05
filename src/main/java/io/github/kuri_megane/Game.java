@@ -73,24 +73,48 @@ public class Game {
 
                 // 移動先の候補
                 Point nextMonster1 = new Point(monster1.next().getRow(), monster1.next().getCol());
-                Point nextMonster2 = new Point(monster2.next().getRow(), monster2.next().getCol());
-                Point nextMonster3 = new Point(monster3.next().getRow(), monster3.next().getCol());
-                Point nextMonster4 = new Point(monster4.next().getRow(), monster4.next().getCol());
 
                 // 移動できそうであれば
                 if (gameMap.get(nextMonster1.getRow(), nextMonster1.getCol()).isGo()) {
                     gameMap.move(monster1, nextMonster1);
                     break;
                 }
+            }
+
+            // Monster の移動，移動できるまでずっと
+            while (true) {
+
+                // 移動先の候補
+                Point nextMonster2 = new Point(monster2.next().getRow(), monster2.next().getCol());
+
+                // 移動できそうであれば
                 if (gameMap.get(nextMonster2.getRow(), nextMonster2.getCol()).isGo()) {
                     gameMap.move(monster2, nextMonster2);
                     break;
                 }
+            }
+
+            // Monster の移動，移動できるまでずっと
+            while (true) {
+
+                // 移動先の候補
+                Point nextMonster3 = new Point(monster3.next().getRow(), monster3.next().getCol());
+
+                // 移動できそうであれば
                 if (gameMap.get(nextMonster3.getRow(), nextMonster3.getCol()).isGo()) {
                     gameMap.move(monster3, nextMonster3);
                     break;
                 }
-                if (gameMap.get(nextMonster4.getRow(), nextMonster1.getCol()).isGo()) {
+            }
+
+            // Monster の移動，移動できるまでずっと
+            while (true) {
+
+                // 移動先の候補
+                Point nextMonster4 = new Point(monster4.next().getRow(), monster4.next().getCol());
+
+                // 移動できそうであれば
+                if (gameMap.get(nextMonster4.getRow(), nextMonster4.getCol()).isGo()) {
                     gameMap.move(monster4, nextMonster4);
                     break;
                 }
