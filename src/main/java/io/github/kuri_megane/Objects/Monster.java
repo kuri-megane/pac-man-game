@@ -59,45 +59,12 @@ public class Monster extends Point implements GameObjects, MovingObjects {
 
     public Point next(GameMap gameMap, PacMan pacMan) {
 
-        Random random = new Random();
-        Point next;
-
-        // 約半分の確率で
-        if (random.nextBoolean()) {
-            next = nextRondom();
-            return next;
-        }
-
-        next = nextChasePacMan(gameMap, pacMan);
-        return next;
-    }
-
-    /**
-     * Monster の次の移動先をランダムに決めます．
-     *
-     * @return 次の移動先の座標
-     */
-    private Point nextRondom() {
-        Point after = new Point(0, 0);
-        Random random = new Random();
-        after.setRow(getRow() + random.nextInt(3) - 1);
-        after.setCol(getCol() + random.nextInt(3) - 1);
-
-        return after;
-    }
-
-    /**
-     * Monster の次の移動先をパックマンを追うように決めます．
-     *
-     * @return 次の移動先の座標
-     */
-    private Point nextChasePacMan(GameMap gameMap, PacMan pacMan) {
-
         // 上右下左の4方向
         int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
         List<Point> candidates = new ArrayList<Point>();
 
+        // 4方向でどこに動くか候補を決める
         for (int[] dir : directions) {
 
             // 4方向について探索
@@ -109,10 +76,11 @@ public class Monster extends Point implements GameObjects, MovingObjects {
                 continue;
             }
 
-            // 直前の座標は候補に入れない
-            if (nextRow == before.getRow() && nextCol == before.getCol()) {
-                continue;
-            }
+            // 直前の座標を候補に入れておけば少し難易度が下がる
+            // // 直前の座標は候補に入れない
+            // if (nextRow == before.getRow() && nextCol == before.getCol()) {
+            //     continue;
+            // }
 
             candidates.add(new Point(nextRow, nextCol));
         }
@@ -121,6 +89,36 @@ public class Monster extends Point implements GameObjects, MovingObjects {
         if (candidates.size() == 0) {
             return new Point(before.getRow(), before.getCol());
         }
+
+        // 約半分の割合でどの方法で移動先を決めるか決定する
+        Random random = new Random();
+
+        if (random.nextBoolean()) {
+            return nextRondom(candidates);
+        }
+
+        return nextChasePacMan(candidates, pacMan);
+    }
+
+    /**
+     * Monster の次の移動先をランダムに決めます．
+     *
+     * @return 次の移動先の座標
+     */
+    public Point nextRondom(List<Point> candidates) {
+
+        // ランダムに決める
+        Random random = new Random();
+        return candidates.get(random.nextInt(candidates.size()));
+
+    }
+
+    /**
+     * Monster の次の移動先をパックマンを追うように決めます．
+     *
+     * @return 次の移動先の座標
+     */
+    public Point nextChasePacMan(List<Point> candidates, PacMan pacMan) {
 
         // pacManとの距離スコアを計算して最も良いスコアの方へ移動させる
         Point bestMove = candidates.get(0);

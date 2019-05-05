@@ -13,43 +13,24 @@ public class Game {
 
     private int playerScore = 0;
     private int monsterScore = 0;
+    private GameMap gameMap = new GameMap();
+    private PlayScreen playScreen = new PlayScreen();
+    private PacMan pacMan = new PacMan(9, 11);
+    private Monster monster1 = new Monster(9, 1);
+    private Monster monster2 = new Monster(9, 20);
+    private Monster monster3 = new Monster(16, 14);
+    private Monster monster4 = new Monster(1, 1);
+    private Controller controller = new Controller(gameMap, pacMan);
+
 
     public Game() {
     }
 
-    /**
-     * 1ゲームの開始
-     */
-    public void run() {
-
-        GameMap gameMap = new GameMap();
-        PlayScreen playScreen = new PlayScreen();
+    public void setUp() {
 
         // コンソールサイズの取得
         playScreen.getConsoleSize();
 
-        // パックマン配置
-        PacMan pacMan = new PacMan(9, 11);
-        gameMap.put(pacMan);
-
-        // モンスター1 配置
-        Monster monster1 = new Monster(9, 1);
-        gameMap.put(monster1);
-
-        // モンスター2 配置
-        Monster monster2 = new Monster(9, 20);
-        gameMap.put(monster2);
-
-        // モンスター3 配置
-        Monster monster3 = new Monster(16, 14);
-        gameMap.put(monster3);
-
-        // モンスター4 配置
-        Monster monster4 = new Monster(1, 1);
-        gameMap.put(monster4);
-
-        // コントローラー配置
-        Controller controller = new Controller(gameMap, pacMan);
         // 標準入力をフックしてなかったらフック
         if (!GlobalScreen.isNativeHookRegistered()) {
             try {
@@ -61,9 +42,88 @@ public class Game {
         }
         GlobalScreen.addNativeKeyListener(controller);
         LogManager.getLogManager().reset();
+    }
+
+    /**
+     * 1ゲームの開始 モンスター1つ
+     */
+    public void runMonster1() {
+
+        // パックマン配置
+        gameMap.put(pacMan);
+
+        // モンスター1 配置
+        gameMap.put(monster1);
 
         // 描画
-        playScreen.display(gameMap.createDisplayStrings());
+        playScreen.display(gameMap.createDisplayStrings(), 100);
+
+        // Cookie がある限り
+        while (gameMap.isProceed()) {
+
+            // Monster の移動
+            Point nextMonster1 = monster1.next(gameMap, pacMan);
+            gameMap.move(monster1, nextMonster1);
+
+            // 描画
+            playScreen.display(gameMap.createDisplayStrings(), 100);
+
+        }
+    }
+
+    /**
+     * 1ゲームの開始 モンスター2つ
+     */
+    public void runMonster2() {
+
+        // パックマン配置
+        gameMap.put(pacMan);
+
+        // モンスター1 配置
+        gameMap.put(monster1);
+
+        // モンスター2 配置
+        gameMap.put(monster2);
+
+        // 描画
+        playScreen.display(gameMap.createDisplayStrings(), 100);
+
+        // Cookie がある限り
+        while (gameMap.isProceed()) {
+
+            // Monster の移動
+            Point nextMonster1 = monster1.next(gameMap, pacMan);
+            gameMap.move(monster1, nextMonster1);
+
+            // Monster の移動
+            Point nextMonster2 = monster2.next(gameMap, pacMan);
+            gameMap.move(monster2, nextMonster2);
+
+            // 描画
+            playScreen.display(gameMap.createDisplayStrings(), 100);
+
+        }
+    }
+
+    /**
+     * 1ゲームの開始 モンスター4つ
+     */
+    public void runMonster4() {
+
+        // モンスター1 配置
+        gameMap.put(monster1);
+
+        // モンスター2 配置
+        gameMap.put(monster2);
+
+        // モンスター3 配置
+        gameMap.put(monster3);
+
+        // モンスター4 配置
+        gameMap.put(monster4);
+
+        // 描画
+        playScreen.display(gameMap.createDisplayStrings(), 100);
 
         // Cookie がある限り
         while (gameMap.isProceed()) {
@@ -85,16 +145,19 @@ public class Game {
             gameMap.move(monster4, nextMonster4);
 
             // 描画
-            playScreen.display(gameMap.createDisplayStrings());
+            playScreen.display(gameMap.createDisplayStrings(), 100);
 
         }
+    }
 
-        // 一時停止
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void tearDown() {
+
+        // 獲得した点数(=獲得した Cookie の数)を入れる
+        playerScore = pacMan.getScore();
+        monsterScore += monster1.getScore();
+        monsterScore += monster2.getScore();
+        monsterScore += monster3.getScore();
+        monsterScore += monster4.getScore();
 
         // コントローラー削除
         GlobalScreen.removeNativeKeyListener(controller);
@@ -103,13 +166,6 @@ public class Game {
         } catch (NativeHookException e) {
             e.printStackTrace();
         }
-
-        // 獲得した点数(=獲得した Cookie の数)を入れる
-        playerScore = pacMan.getScore();
-        monsterScore += monster1.getScore();
-        monsterScore += monster2.getScore();
-        monsterScore += monster3.getScore();
-        monsterScore += monster4.getScore();
     }
 
     public int getPlayerScore() {

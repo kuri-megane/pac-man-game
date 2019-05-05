@@ -7,7 +7,7 @@ import jline.console.ConsoleReader;
 import java.io.IOException;
 import java.util.List;
 
-public class Display extends Thread {
+public class Display {
 
     private int consoleHeight = 0;
     private int consoleWidth = 0;
@@ -36,7 +36,7 @@ public class Display extends Thread {
      *
      * @param lines 描画する文字列
      */
-    public void display(List<String> lines) {
+    public void display(List<String> lines, int sleepTime) {
 
         // 渡された描画文字列の縦横幅を取得
         int stringsHeight = lines.size();
@@ -79,7 +79,7 @@ public class Display extends Thread {
 
         // 一時スリープ
         try {
-            Thread.sleep(100);
+            Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
