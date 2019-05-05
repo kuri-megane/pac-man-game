@@ -3,25 +3,64 @@ package io.github.kuri_megane;
 public class GamaData {
 
     private String name;
-    private int score;
+    private int playerScore;
+    private int monsterScore;
 
     public GamaData(){
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public void setScore(int score){
-        this.score = score;
-    }
-
+    /**
+     * プレイヤー名を取得します．
+     *
+     * @return プレイヤー名
+     */
     public String getName(){
         return name;
     }
 
-    public int getScore(){
-        return score;
+    /**
+     * プレイヤー名を設定します．
+     *
+     * @param name プレイヤー名のString
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * プレイヤーのスコアを取得します．
+     *
+     * @return プレイヤーのスコア
+     */
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    /**
+     * プレイヤーのスコアを設定します．
+     *
+     * @param playerScore プレイヤーが獲得した Cookie の数
+     */
+    public void setPlayerScore(int playerScore) {
+        this.playerScore = playerScore;
+    }
+
+    /**
+     * モンスターのスコアを取得します．
+     *
+     * @return モンスターのスコア
+     */
+    public int getMonsterScore() {
+        return monsterScore;
+    }
+
+    /**
+     * モンスターのスコアを設定します．
+     *
+     * @param monsterScore モンスターが獲得した cookie の数
+     */
+    public void setMonsterScore(int monsterScore) {
+        this.monsterScore = monsterScore;
     }
 
 }
