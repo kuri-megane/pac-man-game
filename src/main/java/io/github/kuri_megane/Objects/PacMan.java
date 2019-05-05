@@ -1,12 +1,14 @@
 package io.github.kuri_megane.Objects;
 
+import io.github.kuri_megane.Objects.Color.Green;
 import io.github.kuri_megane.Point;
 
 import java.awt.*;
 
 public class PacMan extends Point implements GameObjects, MovingObjects {
 
-    private static final String defaultChar = "●";
+    private static final Green green = new Green("●");
+    private static final String defaultChar = green.coloringChar();
     private static final boolean goFlag = true;
     private static final String key = "p";
     private int score = 0;

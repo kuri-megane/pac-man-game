@@ -1,12 +1,14 @@
 package io.github.kuri_megane.Objects;
 
+import io.github.kuri_megane.Objects.Color.Purple;
 import io.github.kuri_megane.Point;
 
 import java.util.Random;
 
 public class Monster extends Point implements GameObjects, MovingObjects {
 
-    private static final String displayChar = "×";
+    private static final Purple purple = new Purple("×");
+    private static final String displayChar = purple.coloringChar();
     private static final boolean goFlag = false;
     private static final String key = "m";
     private int score = 0;
