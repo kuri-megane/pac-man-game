@@ -31,9 +31,21 @@ public class Game {
         PacMan pacMan = new PacMan(9, 11);
         gameMap.put(pacMan);
 
-        // モンスター配置
-        Monster monster = new Monster(9, 1);
-        gameMap.put(monster);
+        // モンスター1 配置
+        Monster monster1 = new Monster(9, 1);
+        gameMap.put(monster1);
+
+        // モンスター2 配置
+        Monster monster2 = new Monster(9, 20);
+        gameMap.put(monster2);
+
+        // モンスター3 配置
+        Monster monster3 = new Monster(16, 14);
+        gameMap.put(monster3);
+
+        // モンスター4 配置
+        Monster monster4 = new Monster(1, 1);
+        gameMap.put(monster4);
 
         // コントローラー配置
         Controller controller = new Controller(gameMap, pacMan);
@@ -59,14 +71,26 @@ public class Game {
             while (true) {
 
                 // 移動先の候補
-                Point next = new Point(monster.next().getRow(), monster.next().getCol());
+                Point nextMonster1 = new Point(monster1.next().getRow(), monster1.next().getCol());
+                Point nextMonster2 = new Point(monster2.next().getRow(), monster2.next().getCol());
+                Point nextMonster3 = new Point(monster3.next().getRow(), monster3.next().getCol());
+                Point nextMonster4 = new Point(monster4.next().getRow(), monster4.next().getCol());
 
                 // 移動できそうであれば
-                if (gameMap.get(next.getRow(), next.getCol()).isGo()) {
-
-                    // 移動の実施
-                    gameMap.move(monster, next);
-
+                if (gameMap.get(nextMonster1.getRow(), nextMonster1.getCol()).isGo()) {
+                    gameMap.move(monster1, nextMonster1);
+                    break;
+                }
+                if (gameMap.get(nextMonster2.getRow(), nextMonster2.getCol()).isGo()) {
+                    gameMap.move(monster2, nextMonster2);
+                    break;
+                }
+                if (gameMap.get(nextMonster3.getRow(), nextMonster3.getCol()).isGo()) {
+                    gameMap.move(monster3, nextMonster3);
+                    break;
+                }
+                if (gameMap.get(nextMonster4.getRow(), nextMonster1.getCol()).isGo()) {
+                    gameMap.move(monster4, nextMonster4);
                     break;
                 }
             }
