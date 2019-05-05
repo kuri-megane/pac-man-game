@@ -10,8 +10,8 @@ import java.util.Map;
 public class GameMap {
 
     // ゲームのオブジェクトの配置 幅と高さ
-    private final int gameMapHeight = 5;
-    private final int gameMapWidth = 17;
+    private final int gameMapHeight = 17;
+    private final int gameMapWidth = 23;
     // ゲームのオブジェクトの配置 (文字型)
     private String[][] strGameMap = new String[gameMapHeight][gameMapWidth];
     // ゲームのオブジェクトの配置 (GameObject型)
@@ -36,11 +36,23 @@ public class GameMap {
      */
     public void setUp() {
         strGameMap = new String[][]{
-                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
-                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "c", "w"},
-                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
-                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"}
+                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w",},
+                {"w", "c", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "c", "c", "c", "w",},
+                {"w", "c", "c", "w", "w", "c", "w", "w", "c", "c", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "w",},
+                {"w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "w",},
+                {"w", "c", "w", "c", "w", "c", "w", "w", "c", "w", "c", "w", "w", "c", "c", "w", "c", "c", "w", "w", "c", "w", "w",},
+                {"w", "c", "w", "c", "w", "c", "w", "c", "c", "w", "c", "c", "w", "w", "c", "w", "c", "w", "w", "w", "c", "w", "w",},
+                {"w", "c", "w", "c", "c", "c", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "w", "w", "c", "w", "w",},
+                {"w", "c", "w", "w", "c", "c", "w", "c", "c", "c", "c", "c", "w", "w", "c", "c", "c", "w", "w", "w", "c", "w", "w",},
+                {"w", "c", "w", "w", "c", "c", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "c", "c", "w",},
+                {"w", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "w",},
+                {"w", "c", "c", "c", "c", "c", "w", "c", "c", "c", "w", "c", "c", "w", "w", "w", "c", "c", "w", "c", "c", "c", "w",},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "c", "w", "w", "w", "c", "c", "w", "c", "w", "w", "w",},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "c", "c", "w", "c", "c", "c", "w", "c", "w", "w", "w",},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "c", "c", "w",},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "w", "w", "w",},
+                {"w", "w", "w", "c", "w", "w", "w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "w", "c", "w", "c", "c", "c", "w",},
+                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w",},
         };
     }
 
@@ -90,7 +102,7 @@ public class GameMap {
                 }
 
                 // それ以外
-                gameMap[row][col] = new Nothing();
+                gameMap[row][col] = new Wall();
             }
         }
     }

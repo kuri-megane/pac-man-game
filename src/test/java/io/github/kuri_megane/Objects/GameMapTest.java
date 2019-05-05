@@ -16,11 +16,23 @@ import static org.hamcrest.Matchers.*;
 public class GameMapTest {
 
     private String[][] strGameMapTest = new String[][]{
-            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-            {"w", "c", "n", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+            {"w", "", "c", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "c", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "c", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "c", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "c", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
+            {"w", "", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n",},
     };
 
     Object getNumOfObjectsByReflection(GameMap obj) throws Exception {
@@ -45,11 +57,23 @@ public class GameMapTest {
     public void testSetUpDefault() throws Exception {
 
         String[][] expected = new String[][]{
-                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
-                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "w"},
-                {"w", "c", "w", "w", "w", "w", "w", "c", "w", "w", "w", "w", "w", "w", "w", "c", "w"},
-                {"w", "n", "n", "c", "c", "c", "c", "c", "c", "c", "c", "n", "c", "c", "c", "c", "w"},
-                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"}
+                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
+                {"w", "c", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "c", "c", "c", "w"},
+                {"w", "c", "c", "w", "w", "c", "w", "w", "c", "c", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "w"},
+                {"w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "c", "w", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "w"},
+                {"w", "c", "w", "c", "w", "c", "w", "w", "c", "w", "c", "w", "w", "c", "c", "w", "c", "c", "w", "w", "c", "w", "w"},
+                {"w", "c", "w", "c", "w", "c", "w", "c", "c", "w", "c", "c", "w", "w", "c", "w", "c", "w", "w", "w", "c", "w", "w"},
+                {"w", "c", "w", "c", "c", "c", "w", "c", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "w", "w", "c", "w", "w"},
+                {"w", "c", "w", "w", "c", "c", "w", "c", "c", "c", "c", "c", "w", "w", "c", "c", "c", "w", "w", "w", "c", "w", "w"},
+                {"w", "c", "w", "w", "c", "c", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "w", "w", "w", "c", "c", "c", "w"},
+                {"w", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n", "w"},
+                {"w", "c", "c", "c", "c", "c", "w", "c", "c", "c", "w", "c", "c", "w", "w", "w", "c", "c", "w", "c", "c", "c", "w"},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "c", "w", "w", "w", "c", "c", "w", "c", "w", "w", "w"},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "c", "c", "w", "c", "c", "c", "w", "c", "w", "w", "w"},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "c", "c", "w"},
+                {"w", "w", "w", "c", "w", "w", "w", "w", "c", "w", "w", "c", "w", "c", "w", "c", "w", "c", "w", "c", "w", "w", "w"},
+                {"w", "w", "w", "c", "w", "w", "w", "c", "c", "c", "w", "c", "w", "w", "c", "w", "w", "c", "w", "c", "c", "c", "w"},
+                {"w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"},
         };
 
         GameMap gameMap = new GameMap();
@@ -100,26 +124,23 @@ public class GameMapTest {
 
         // XXX: 見にくい
         GameObjects[][] expected = new GameObjects[][]{
-                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(),},
-                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(),},
-                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(),},
-                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(),},
-                {new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),
-                        new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Cookie(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),},
+                {new Wall(), new Wall(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(), new Nothing(),}
         };
 
         for (int row = 0; row < expected.length; row++) {
@@ -140,9 +161,9 @@ public class GameMapTest {
         // ここで例外発生の可能性あり
         Map<String, Integer> actual = (Map<String, Integer>) getNumOfObjectsByReflection(gameMap);
 
-        assertThat(actual, hasEntry("w", 52));
-        assertThat(actual, hasEntry("c", 28));
-        assertThat(actual, hasEntry("n", 5));
+        assertThat(actual, hasEntry("w", 236));
+        assertThat(actual, hasEntry("c", 134));
+        assertThat(actual, hasEntry("n", 21));
 
     }
 
@@ -162,7 +183,7 @@ public class GameMapTest {
         // 無効な座標を指定するとエラー
         assertThat(gameMap.get(-1, 0), any(Object.class));
         assertThat(gameMap.get(5, 0), any(Object.class));
-        assertThat(gameMap.get(0, 17), any(Object.class));
+        assertThat(gameMap.get(0, 24), any(Object.class));
 
     }
 
@@ -172,16 +193,16 @@ public class GameMapTest {
         GameMap gameMap = new GameMap(strGameMapTest);
 
         // 移動前
-        PacMan pacMan = new PacMan(4,1);
+        PacMan pacMan = new PacMan(9, 11);
 
         // 移動後
-        gameMap.move(pacMan, new Point(4,2));
+        gameMap.move(pacMan, new Point(9, 12));
 
         // 移動前は Nothing オブジェクトに
-        assertThat(gameMap.get(4, 1), Matchers.<GameObjects>instanceOf(Nothing.class));
+        assertThat(gameMap.get(9, 11), Matchers.<GameObjects>instanceOf(Nothing.class));
 
         // 移動後は PacMan が配置される
-        assertThat(gameMap.get(4, 2), Matchers.<GameObjects>instanceOf(PacMan.class));
+        assertThat(gameMap.get(9, 12), Matchers.<GameObjects>instanceOf(PacMan.class));
 
     }
 
@@ -211,11 +232,11 @@ public class GameMapTest {
         GameMap gameMap = new GameMap(strGameMapTest);
         PacMan pacMan = new PacMan(0,2);
 
-        gameMap.move(pacMan, new Point(0,1));
-        gameMap.move(pacMan, new Point(1,1));
-        gameMap.move(pacMan, new Point(2,1));
-        gameMap.move(pacMan, new Point(3,1));
-        gameMap.move(pacMan, new Point(4,1));
+        gameMap.move(pacMan, new Point(0, 2));
+        gameMap.move(pacMan, new Point(1, 2));
+        gameMap.move(pacMan, new Point(2, 2));
+        gameMap.move(pacMan, new Point(3, 2));
+        gameMap.move(pacMan, new Point(4, 2));
 
         assertThat(gameMap.isProceed(), is(false));
 
@@ -228,11 +249,24 @@ public class GameMapTest {
         List<String> actual = gameMap.createDisplayStrings();
         List<String> expected = new ArrayList<String>();
 
-        expected.add("\u001B[00;44m \u001B[00m★               ");
-        expected.add("\u001B[00;44m \u001B[00m★               ");
-        expected.add("\u001B[00;44m \u001B[00m★               ");
-        expected.add("\u001B[00;44m \u001B[00m★               ");
-        expected.add("\u001B[00;44m \u001B[00m★               ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m★                    ");
+
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
+        expected.add("\u001B[00;44m \u001B[00m\u001B[00;44m \u001B[00m                     ");
 
         assertThat(actual, is(expected));
 
