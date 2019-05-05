@@ -6,7 +6,7 @@ public class Wall implements GameObjects {
 
     private static final Blue blue = new Blue(" ");
     private static final String displayChar = blue.coloringBack();
-    private static final boolean goFlag = true;
+    private static final boolean goFlag = false;
     private static final String key = "w";
 
     public Wall() {
