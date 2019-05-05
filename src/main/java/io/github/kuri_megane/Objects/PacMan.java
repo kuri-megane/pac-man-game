@@ -11,27 +11,55 @@ public class PacMan extends Point implements GameObjects, MovingObjects {
     private static final String key = "p";
     private int score = 0;
 
+    // 前にいた座標
+    private Point before;
+
     public PacMan(int row, int col) {
         super(row, col);
+        before = new Point(row, col);
     }
 
+    /**
+     * PacMan をどのように表示させるか取得します．
+     *
+     * @return 表示用の文字
+     */
     public String getChar() {
         return defaultChar;
     }
 
+    /**
+     * この PacMan のある位置に移動できるか取得します．
+     * PacMan は true です．
+     *
+     * @return
+     */
     public boolean isGo() {
         return goFlag;
     }
 
+    /**
+     * PacMan であることを示すキーを取得します．
+     *
+     * @return 文字列 "p"
+     */
     public String getKey() {
         return key;
     }
 
-    public void addScore(){
+    /**
+     * スコアを加算する
+     */
+    public void addScore() {
         score++;
     }
 
-    public int getScore(){
+    /**
+     * 現在のスコア(=獲得したCookieの数)を取得
+     *
+     * @return スコア
+     */
+    public int getScore() {
         return score;
     }
 
@@ -40,5 +68,13 @@ public class PacMan extends Point implements GameObjects, MovingObjects {
      */
     public void failToMove() {
         Toolkit.getDefaultToolkit().beep();
+    }
+
+    /**
+     * 直前座標の保持
+     */
+    public void setBeforePoint() {
+        before.setRow(super.getRow());
+        before.setCol(super.getCol());
     }
 }

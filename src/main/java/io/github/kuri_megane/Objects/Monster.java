@@ -11,22 +11,47 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     private static final String key = "m";
     private int score = 0;
 
+    // 前にいた座標
+    private Point before;
+
     public Monster(int row, int col) {
         super(row, col);
+        before = new Point(row, col);
     }
 
+    /**
+     * Monster をどのように表示させるか取得します．
+     *
+     * @return 表示用の文字
+     */
     public String getChar() {
         return displayChar;
     }
 
+    /**
+     * この Monster のある位置に移動できるか取得します．
+     * Monster は false です．
+     *
+     * @return
+     */
     public boolean isGo() {
         return goFlag;
     }
 
+    /**
+     * Monster であることを示すキーを取得します．
+     *
+     * @return 文字列 "m"
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * Monster の次の移動先を決めます．
+     *
+     * @return 次の移動先の座標
+     */
     public Point next() {
 
         Point after = new Point(0, 0);
@@ -39,11 +64,19 @@ public class Monster extends Point implements GameObjects, MovingObjects {
         return after;
     }
 
-    public void addScore(){
+    /**
+     * スコアを加算する
+     */
+    public void addScore() {
         score++;
     }
 
-    public int getScore(){
+    /**
+     * 現在のスコア(=獲得したCookieの数)を取得
+     *
+     * @return スコア
+     */
+    public int getScore() {
         return score;
     }
 
@@ -52,5 +85,13 @@ public class Monster extends Point implements GameObjects, MovingObjects {
      */
     public void failToMove() {
 
+    }
+
+    /**
+     * 直前座標の保持
+     */
+    public void setBeforePoint() {
+        before.setRow(super.getRow());
+        before.setCol(super.getCol());
     }
 }

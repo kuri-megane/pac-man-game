@@ -149,6 +149,7 @@ public class GameMap {
             gameMap[after.getRow()][after.getCol()] = (GameObjects) obj;
 
             // MovingObject の座標更新
+            obj.setBeforePoint();
             obj.setRow(after.getRow());
             obj.setCol(after.getCol());
 
@@ -164,6 +165,7 @@ public class GameMap {
             gameMap[after.getRow()][after.getCol()] = (GameObjects) obj;
 
             // MovingObject の座標更新
+            obj.setBeforePoint();
             obj.setRow(after.getRow());
             obj.setCol(after.getCol());
 
