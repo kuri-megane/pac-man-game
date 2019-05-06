@@ -15,6 +15,7 @@ Javaで書いてます．
 
 ![フレイ動画](https://user-images.githubusercontent.com/43510592/57206275-88901b80-6fff-11e9-9eba-cd2668a4a8c4.gif)
 
+and [See YouTube](https://youtu.be/zF0qn5xk3Oc)
 
 ```bash
 $ mvn install -DskipTests=true
@@ -34,9 +35,14 @@ $ mvn exec:java -Dexec.mainClass="io.github.kuri_megane.Main"
 - [Java SDK Amazon Corretto 8](https://docs.aws.amazon.com/ja_jp/corretto/latest/corretto-8-ug/downloads-list.html)
 - [maven](https://maven.apache.org/)
 
-# Docmentation
+# Documentation
 
 - [Javadoc](https://kuri-megane.github.io/pac-man-game/) : in the `/docs` folder.
+
+# Develop Management
+
+- [Trello](https://trello.com/b/EcY2TEAx)
+
 
 # Licence
 This software is released under the MIT License, see LICENSE.
