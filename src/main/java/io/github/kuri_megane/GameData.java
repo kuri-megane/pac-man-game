@@ -78,6 +78,8 @@ public class GameData {
 
     /**
      * パックマンがモンスターに捕まったかどうかを保存します．
+     *
+     * @param isDead 捕まってたら true を入れる
      */
     public void setDead(boolean isDead) {
         dead = isDead;
