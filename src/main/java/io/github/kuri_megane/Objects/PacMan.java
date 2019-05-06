@@ -7,6 +7,8 @@ import java.awt.*;
 
 /**
  * パックマンを定義したクラス
+ * GameObjects と MovingObjects を継承
+ * パックマンを動かす定義は Controller クラスを参照
  */
 public class PacMan extends Point implements GameObjects, MovingObjects {
 
