@@ -1,5 +1,8 @@
 package io.github.kuri_megane;
 
+/**
+ * プレイヤーのゲームデータのクラス
+ */
 public class GamaData {
 
     private String name;

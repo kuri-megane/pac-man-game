@@ -16,7 +16,8 @@ public class EndRoll extends Display {
     /**
      * タイトル文字列の整形
      *
-     * @return タイトル文字列
+     * @param gamaData ゲームデータが保存されたインスタンス
+     * @return 整形した文字列
      */
     public List<String> createResultStrings(GamaData gamaData) {
 

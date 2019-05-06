@@ -9,6 +9,10 @@ import org.jnativehook.NativeHookException;
 
 import java.util.logging.LogManager;
 
+
+/**
+ * 1ゲーム分の実行コードが入ってる
+ */
 public class Game {
 
     private int playerScore = 0;
@@ -42,12 +46,11 @@ public class Game {
         }
         GlobalScreen.addNativeKeyListener(controller);
 
-        // 一時的に変更
-        // LogManager.getLogManager().reset();
+        LogManager.getLogManager().reset();
     }
 
     /**
-     * 1ゲームの開始 モンスター1つ
+     * 1ゲームの開始 モンスター1つ配置
      */
     public void runMonster1() {
 
@@ -74,7 +77,7 @@ public class Game {
     }
 
     /**
-     * 1ゲームの開始 モンスター2つ
+     * 1ゲームの開始 モンスター2つ配置
      */
     public void runMonster2() {
 
@@ -108,7 +111,7 @@ public class Game {
     }
 
     /**
-     * 1ゲームの開始 モンスター4つ
+     * 1ゲームの開始 モンスター4つ配置
      */
     public void runMonster4() {
 
@@ -152,6 +155,10 @@ public class Game {
         }
     }
 
+    /**
+     * ゲームの終了処理
+     * スコアの保存とコントローラーの削除
+     */
     public void tearDown() {
 
         // 獲得した点数(=獲得した Cookie の数)を入れる
@@ -170,10 +177,20 @@ public class Game {
         }
     }
 
+    /**
+     * プレイヤー(PacMan)のスコアを取得する
+     *
+     * @return プレイヤーが獲得した Cookie の数
+     */
     public int getPlayerScore() {
         return playerScore;
     }
 
+    /**
+     * モンスターのスコアを取得する
+     *
+     * @return モンスターが獲得した Cookie の数
+     */
     public int getMonsterScore() {
         return monsterScore;
     }

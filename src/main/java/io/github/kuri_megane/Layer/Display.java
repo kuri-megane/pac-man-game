@@ -7,6 +7,9 @@ import jline.console.ConsoleReader;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * 標準出力の描画に関するクラス
+ */
 public class Display {
 
     private int consoleHeight = 0;
@@ -34,7 +37,8 @@ public class Display {
     /**
      * ゲームのプレイ画面 (つまり ゲームマップ) の描画
      *
-     * @param lines 描画する文字列
+     * @param lines     描画する文字列
+     * @param sleepTime 画面表示をする時間，この間スレッドが止まる
      */
     public void display(List<String> lines, int sleepTime) {
 

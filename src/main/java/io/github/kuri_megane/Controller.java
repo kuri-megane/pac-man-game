@@ -7,6 +7,9 @@ import org.jnativehook.keyboard.NativeKeyListener;
 
 import java.util.logging.Logger;
 
+/**
+ * プレイヤーが PacMan を移動させるためのクラス
+ */
 public class Controller implements NativeKeyListener {
 
     private GameMap gameMap;

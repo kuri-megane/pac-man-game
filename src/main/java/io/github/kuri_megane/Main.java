@@ -3,6 +3,10 @@ package io.github.kuri_megane;
 import io.github.kuri_megane.Layer.EndRoll;
 import io.github.kuri_megane.Layer.StartMenu;
 
+/**
+ * 実行のエンドポイント
+ * ゲームはここから開始させる
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -62,6 +66,6 @@ public class Main {
 
         // 終了
         // XXX: スレッドがうまく終了できていないため
-        System.exit(0);
+//        System.exit(0);
     }
 }

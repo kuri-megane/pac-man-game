@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * モンスターを定義したクラス
+ * ここに動きなども含まれる
+ */
 public class Monster extends Point implements GameObjects, MovingObjects {
 
     private static final Purple purple = new Purple("×");
@@ -36,7 +40,7 @@ public class Monster extends Point implements GameObjects, MovingObjects {
      * この Monster のある位置に移動できるか取得します．
      * Monster は false です．
      *
-     * @return
+     * @return 移動できるかどうかのフラグ
      */
     public boolean isGo() {
         return goFlag;
@@ -54,9 +58,10 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     /**
      * Monster の次の移動先を決めます．
      *
+     * @param gameMap 生成した gameMap インスタンス
+     * @param pacMan  生成した pacMan インスタンス
      * @return 次の移動先の座標
      */
-
     public Point next(GameMap gameMap, PacMan pacMan) {
 
         // 上右下左の4方向
@@ -94,7 +99,7 @@ public class Monster extends Point implements GameObjects, MovingObjects {
         Random random = new Random();
 
         if (random.nextBoolean()) {
-            return nextRondom(candidates);
+            return nextRandom(candidates);
         }
 
         return nextChasePacMan(candidates, pacMan);
@@ -103,9 +108,10 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     /**
      * Monster の次の移動先をランダムに決めます．
      *
+     * @param candidates 移動先の座標の候補 next() で生成
      * @return 次の移動先の座標
      */
-    public Point nextRondom(List<Point> candidates) {
+    private Point nextRandom(List<Point> candidates) {
 
         // ランダムに決める
         Random random = new Random();
@@ -116,9 +122,11 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     /**
      * Monster の次の移動先をパックマンを追うように決めます．
      *
+     * @param candidates 移動先の座標の候補 next() で生成
+     * @param pacMan     生成した PacMan のインスタンス
      * @return 次の移動先の座標
      */
-    public Point nextChasePacMan(List<Point> candidates, PacMan pacMan) {
+    private Point nextChasePacMan(List<Point> candidates, PacMan pacMan) {
 
         // pacManとの距離スコアを計算して最も良いスコアの方へ移動させる
         Point bestMove = candidates.get(0);

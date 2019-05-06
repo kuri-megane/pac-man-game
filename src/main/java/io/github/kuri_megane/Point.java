@@ -1,5 +1,8 @@
 package io.github.kuri_megane;
 
+/**
+ * 2次元座標のクラス
+ */
 public class Point {
 
     private int row;

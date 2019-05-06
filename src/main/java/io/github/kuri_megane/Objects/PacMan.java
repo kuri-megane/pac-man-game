@@ -5,6 +5,9 @@ import io.github.kuri_megane.Point;
 
 import java.awt.*;
 
+/**
+ * パックマンを定義したクラス
+ */
 public class PacMan extends Point implements GameObjects, MovingObjects {
 
     private static final Green green = new Green("●");
@@ -34,7 +37,7 @@ public class PacMan extends Point implements GameObjects, MovingObjects {
      * この PacMan のある位置に移動できるか取得します．
      * PacMan は true です．
      *
-     * @return
+     * @return 移動できるかどうかのフラグ
      */
     public boolean isGo() {
         return goFlag;
