@@ -5,17 +5,17 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class BlueTest {
+public class PurpleTest {
 
     @Test
     public void testColoringChar() {
 
         String input = "hoge";
 
-        Blue blue = new Blue(input);
-        String actual = blue.coloringChar();
+        Purple purple = new Purple(input);
+        String actual = purple.coloringChar();
 
-        String expected = "\u001B[00;34mhoge\u001B[00m";
+        String expected = "\u001B[00;35mhoge\u001B[00m";
 
         assertThat(actual, is(expected));
 
@@ -26,10 +26,10 @@ public class BlueTest {
 
         String input = "hoge";
 
-        Blue blue = new Blue(input);
-        String actual = blue.coloringBack();
+        Purple purple = new Purple(input);
+        String actual = purple.coloringBack();
 
-        String expected = "\u001B[00;44mhoge\u001B[00m";
+        String expected = "\u001B[00;45mhoge\u001B[00m";
 
         assertThat(actual, is(expected));
 
