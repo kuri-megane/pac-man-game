@@ -8,8 +8,9 @@ public class GamaData {
     private String name;
     private int playerScore;
     private int monsterScore;
+    private boolean dead;
 
-    public GamaData(){
+    public GamaData() {
     }
 
     /**
@@ -17,7 +18,7 @@ public class GamaData {
      *
      * @return プレイヤー名
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -64,6 +65,22 @@ public class GamaData {
      */
     public void setMonsterScore(int monsterScore) {
         this.monsterScore = monsterScore;
+    }
+
+    /**
+     * パックマンがモンスターに捕まったか設定します．
+     *
+     * @return 捕まったら true
+     */
+    public boolean isDead() {
+        return dead;
+    }
+
+    /**
+     * パックマンがモンスターに捕まったかどうかを保存します．
+     */
+    public void setDead(boolean isDead) {
+        dead = isDead;
     }
 
 }

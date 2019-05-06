@@ -22,18 +22,22 @@ public class EndRoll extends Display {
     public List<String> createResultStrings(GamaData gamaData) {
 
         String strResult = "";
+        String strIsDead = "";
 
         // プレイヤーの勝敗を決める
         if (gamaData.getPlayerScore() < gamaData.getMonsterScore()) {
             strResult = "You losing...";
         }
         if (gamaData.getPlayerScore() > gamaData.getMonsterScore()) {
-            strResult = "You WIN !!";
+            strResult = "You WIN!!";
         }
         if (gamaData.getPlayerScore() == gamaData.getMonsterScore()) {
             strResult = "DRAW";
         }
 
+        if (gamaData.isDead()) {
+            strIsDead = "You Dead... GAME OUT!!";
+        }
 
         // XXX: ここにベタ書きするの良くない
         title.add(" ____            __  __              ____                      ");
@@ -49,6 +53,8 @@ public class EndRoll extends Display {
         title.add("             Monster Score: " + gamaData.getMonsterScore());
         title.add("");
         title.add("                         " + strResult);
+        title.add("");
+        title.add("                  " + strIsDead);
 
         return title;
     }

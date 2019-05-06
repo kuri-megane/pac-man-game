@@ -18,6 +18,8 @@ public class GameMap {
     private GameObjects[][] gameMap = new GameObjects[gameMapHeight][gameMapWidth];
     // 各オブジェクトの数
     private Map<String, Integer> numOfObjects = new HashMap<String, Integer>();
+    // パックマンが死んだかどうか
+    private boolean dead = false;
 
     public GameMap() {
         setUp();
@@ -190,6 +192,7 @@ public class GameMap {
 
             // ゲーム終了にする
             numOfObjects.put("c", 0);
+            dead = true;
 
             return;
         }
@@ -206,6 +209,7 @@ public class GameMap {
 
                 // ゲーム終了にする
                 numOfObjects.put("c", 0);
+                dead = true;
 
                 return;
             }
@@ -311,5 +315,14 @@ public class GameMap {
             lines.add(line.toString());
         }
         return lines;
+    }
+
+    /**
+     * パックマンが死んだかどうかを返します．
+     *
+     * @return パックマンが死んでたら true
+     */
+    public boolean isDead() {
+        return dead;
     }
 }

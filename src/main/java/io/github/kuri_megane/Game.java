@@ -17,6 +17,7 @@ public class Game {
 
     private int playerScore = 0;
     private int monsterScore = 0;
+    private boolean playerDead = false;
     private GameMap gameMap = new GameMap();
     private PlayScreen playScreen = new PlayScreen();
     private PacMan pacMan = new PacMan(9, 11);
@@ -168,6 +169,11 @@ public class Game {
         monsterScore += monster3.getScore();
         monsterScore += monster4.getScore();
 
+        // パックマンが死んでるか確認
+        if (gameMap.isDead()) {
+            playerDead = true;
+        }
+
         // コントローラー削除
         GlobalScreen.removeNativeKeyListener(controller);
         try {
@@ -193,5 +199,14 @@ public class Game {
      */
     public int getMonsterScore() {
         return monsterScore;
+    }
+
+    /**
+     * プレイヤーが死んでいるか確認します．
+     *
+     * @return 死んでたら true
+     */
+    public boolean isPlayerDead() {
+        return playerDead;
     }
 }
