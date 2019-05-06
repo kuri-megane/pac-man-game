@@ -3,14 +3,14 @@ package io.github.kuri_megane;
 /**
  * プレイヤーのゲームデータのクラス
  */
-public class GamaData {
+public class GameData {
 
     private String name;
     private int playerScore;
     private int monsterScore;
     private boolean dead;
 
-    public GamaData() {
+    public GameData() {
     }
 
     /**

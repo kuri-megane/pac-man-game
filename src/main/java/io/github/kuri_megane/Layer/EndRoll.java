@@ -1,6 +1,6 @@
 package io.github.kuri_megane.Layer;
 
-import io.github.kuri_megane.GamaData;
+import io.github.kuri_megane.GameData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,26 +16,26 @@ public class EndRoll extends Display {
     /**
      * タイトル文字列の整形
      *
-     * @param gamaData ゲームデータが保存されたインスタンス
+     * @param gameData ゲームデータが保存されたインスタンス
      * @return 整形した文字列
      */
-    public List<String> createResultStrings(GamaData gamaData) {
+    public List<String> createResultStrings(GameData gameData) {
 
         String strResult = "";
         String strIsDead = "";
 
         // プレイヤーの勝敗を決める
-        if (gamaData.getPlayerScore() < gamaData.getMonsterScore()) {
+        if (gameData.getPlayerScore() < gameData.getMonsterScore()) {
             strResult = "You lose...";
         }
-        if (gamaData.getPlayerScore() > gamaData.getMonsterScore()) {
+        if (gameData.getPlayerScore() > gameData.getMonsterScore()) {
             strResult = "You WIN!!";
         }
-        if (gamaData.getPlayerScore() == gamaData.getMonsterScore()) {
+        if (gameData.getPlayerScore() == gameData.getMonsterScore()) {
             strResult = "DRAW";
         }
 
-        if (gamaData.isDead()) {
+        if (gameData.isDead()) {
             strIsDead = "You Dead... GAME OUT!!";
         }
 
@@ -48,9 +48,9 @@ public class EndRoll extends Display {
         title.add("");
         title.add("                              End                                ");
         title.add("");
-        title.add("                      Name: " + gamaData.getName());
-        title.add("                Your Score: " + gamaData.getPlayerScore());
-        title.add("             Monster Score: " + gamaData.getMonsterScore());
+        title.add("                      Name: " + gameData.getName());
+        title.add("                Your Score: " + gameData.getPlayerScore());
+        title.add("             Monster Score: " + gameData.getMonsterScore());
         title.add("");
         title.add("                         " + strResult);
         title.add("");

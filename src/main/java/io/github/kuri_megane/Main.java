@@ -10,37 +10,37 @@ import io.github.kuri_megane.Layer.StartMenu;
 public class Main {
     public static void main(String[] args) {
 
-        GamaData gamaData = new GamaData();
+        GameData gameData = new GameData();
 
         // スタートメニューの表示
         StartMenu startMenu = new StartMenu();
         startMenu.getConsoleSize();
         startMenu.display(startMenu.createTitle(), 1000);
         String name = startMenu.inputName();
-        gamaData.setName(name);
+        gameData.setName(name);
 
         // 1ゲーム目
         Game game1 = new Game();
         game1.setUp();
         game1.runMonster1();
         game1.tearDown();
-        gamaData.setPlayerScore(game1.getPlayerScore() + gamaData.getPlayerScore());
-        gamaData.setMonsterScore(game1.getMonsterScore() + gamaData.getMonsterScore());
-        gamaData.setDead(game1.isPlayerDead());
+        gameData.setPlayerScore(game1.getPlayerScore() + gameData.getPlayerScore());
+        gameData.setMonsterScore(game1.getMonsterScore() + gameData.getMonsterScore());
+        gameData.setDead(game1.isPlayerDead());
 
         // 結果画面表示
         EndRoll endRoll = new EndRoll();
         endRoll.getConsoleSize();
-        endRoll.display(endRoll.createResultStrings(gamaData), 5000);
+        endRoll.display(endRoll.createResultStrings(gameData), 5000);
 
         // 死んでたら
-        if (gamaData.isDead()) {
+        if (gameData.isDead()) {
             // return;
             // XXX: スレッドがうまく終了できていないため
             System.exit(0);
         }
         // 得点が低かったら
-        if (gamaData.getPlayerScore() <= gamaData.getMonsterScore()) {
+        if (gameData.getPlayerScore() <= gameData.getMonsterScore()) {
             // return;
             // XXX: スレッドがうまく終了できていないため
             System.exit(0);
@@ -51,22 +51,22 @@ public class Main {
         game2.setUp();
         game2.runMonster2();
         game2.tearDown();
-        gamaData.setPlayerScore(game2.getPlayerScore() + gamaData.getPlayerScore());
-        gamaData.setMonsterScore(game2.getMonsterScore() + gamaData.getMonsterScore());
-        gamaData.setDead(game2.isPlayerDead());
+        gameData.setPlayerScore(game2.getPlayerScore() + gameData.getPlayerScore());
+        gameData.setMonsterScore(game2.getMonsterScore() + gameData.getMonsterScore());
+        gameData.setDead(game2.isPlayerDead());
 
         // 結果画面表示
         endRoll.getConsoleSize();
-        endRoll.display(endRoll.createResultStrings(gamaData), 5000);
+        endRoll.display(endRoll.createResultStrings(gameData), 5000);
 
         // 死んでたら
-        if (gamaData.isDead()) {
+        if (gameData.isDead()) {
             // return;
             // XXX: スレッドがうまく終了できていないため
             System.exit(0);
         }
         // 得点が低かったら
-        if (gamaData.getPlayerScore() <= gamaData.getMonsterScore()) {
+        if (gameData.getPlayerScore() <= gameData.getMonsterScore()) {
             // return;
             // XXX: スレッドがうまく終了できていないため
             System.exit(0);
@@ -77,13 +77,13 @@ public class Main {
         game3.setUp();
         game3.runMonster4();
         game3.tearDown();
-        gamaData.setPlayerScore(game3.getPlayerScore() + gamaData.getPlayerScore());
-        gamaData.setMonsterScore(game3.getMonsterScore() + gamaData.getMonsterScore());
-        gamaData.setDead(game3.isPlayerDead());
+        gameData.setPlayerScore(game3.getPlayerScore() + gameData.getPlayerScore());
+        gameData.setMonsterScore(game3.getMonsterScore() + gameData.getMonsterScore());
+        gameData.setDead(game3.isPlayerDead());
 
         // 結果画面表示
         endRoll.getConsoleSize();
-        endRoll.display(endRoll.createResultStrings(gamaData), 5000);
+        endRoll.display(endRoll.createResultStrings(gameData), 5000);
 
         // 終了
         // XXX: スレッドがうまく終了できていないため
