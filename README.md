@@ -1,6 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/0486eae61dc0c74bf8de/maintainability)](https://codeclimate.com/github/kuri-megane/pac-man-game/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0486eae61dc0c74bf8de/test_coverage)](https://codeclimate.com/github/kuri-megane/pac-man-game/test_coverage)
-[![CircleCI](https://circleci.com/gh/kuri-megane/pac-man-game/tree/master.svg?style=svg)](https://circleci.com/gh/kuri-megane/pac-man-game/tree/master)
+[![CircleCI](https://circleci.com/gh/kuri-megane/pac-man-game.svg?style=svg)](https://circleci.com/gh/kuri-megane/pac-man-game)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Develop By MacOS](https://img.shields.io/badge/Confirm%20by-macOS-blue.svg)
 
