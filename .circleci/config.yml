@@ -2,20 +2,20 @@ version: 2
 jobs:
   build:
     docker:
-      - image: amazoncorretto:8
+      - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/pac-man-game
     steps:
       - checkout
       - restore_cache:
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: pac-man-game-1.0-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline
       - save_cache:
           paths:
             - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-      - run: mvn package
+          key: pac-man-game-1.0-{{ checksum "pom.xml" }}
+      - run: mvn compile
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
-          path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
+          path: target/pac-man-game-1.0.jar
 
