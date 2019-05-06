@@ -9,7 +9,8 @@ import java.util.Random;
 
 /**
  * モンスターを定義したクラス
- * ここに動きなども含まれる
+ * GameObjects と MovingObjects を継承
+ * ここに動きの定義なども含まれる
  */
 public class Monster extends Point implements GameObjects, MovingObjects {
 
@@ -49,7 +50,7 @@ public class Monster extends Point implements GameObjects, MovingObjects {
     /**
      * Monster であることを示すキーを取得します．
      *
-     * @return 文字列 "m"
+     * @return 文字列 "m" (private static final String key で指定)
      */
     public String getKey() {
         return key;
