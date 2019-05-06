@@ -8,24 +8,51 @@ public class Point {
     private int row;
     private int col;
 
-    public Point(int row, int col){
+    /**
+     * 初期座標を決めます．
+     *
+     * @param row どこの行か
+     * @param col どこの列か
+     */
+    public Point(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    public int getRow(){
+
+    /**
+     * どの行か取得します．
+     *
+     * @return 行の数字
+     */
+    public int getRow() {
         return row;
     }
 
-    public int getCol(){
-        return col;
-    }
-
-    public void setRow(int row){
+    /**
+     * どの行にいるか設定します．
+     *
+     * @param row 行の数字
+     */
+    public void setRow(int row) {
         this.row = row;
     }
 
-    public void setCol(int col){
+    /**
+     * どの列か取得します．
+     *
+     * @return 列の数字
+     */
+    public int getCol() {
+        return col;
+    }
+
+    /**
+     * どの列にいるか設定します．
+     *
+     * @param col 列の筋
+     */
+    public void setCol(int col) {
         this.col = col;
     }
 
