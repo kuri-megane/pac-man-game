@@ -26,7 +26,7 @@ public class EndRoll extends Display {
 
         // プレイヤーの勝敗を決める
         if (gamaData.getPlayerScore() < gamaData.getMonsterScore()) {
-            strResult = "You losing...";
+            strResult = "You lose...";
         }
         if (gamaData.getPlayerScore() > gamaData.getMonsterScore()) {
             strResult = "You WIN!!";
