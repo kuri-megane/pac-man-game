@@ -24,7 +24,8 @@ public class Controller implements NativeKeyListener {
     // キーが押された
     public void nativeKeyPressed(NativeKeyEvent e) {
 
-        logger.info(Integer.toString(e.getRawCode()));
+        // for debug
+        // logger.info(Integer.toString(e.getRawCode()));
 
         // 左矢印キー
         if (e.getRawCode() == 123) {
