@@ -33,7 +33,7 @@ public class Main {
         endRoll.display(endRoll.createResultStrings(gamaData), 5000);
 
         // 1ゲーム目をクリアしたら
-        if (gamaData.getMonsterScore() < gamaData.getPlayerScore()) {
+        if (gamaData.getMonsterScore() <= gamaData.getPlayerScore()) {
 
             // 2ゲーム目
             Game game2 = new Game();
@@ -49,7 +49,7 @@ public class Main {
         }
 
         // 2ゲーム目をクリアしたら
-        if (gamaData.getMonsterScore() < gamaData.getPlayerScore()) {
+        if (gamaData.getMonsterScore() <= gamaData.getPlayerScore()) {
 
             // 3ゲーム目
             Game game3 = new Game();
