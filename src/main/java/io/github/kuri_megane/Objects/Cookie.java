@@ -1,5 +1,11 @@
 package io.github.kuri_megane.Objects;
 
+/**
+ * クッキーを定義したクラス
+ * GameObjects を継承
+ * MovingObjects は継承していない
+ * つまり動くことはない
+ */
 public class Cookie implements GameObjects {
 
     private static final String displayChar = "★";

@@ -1,7 +1,10 @@
 package io.github.kuri_megane.Objects;
 
 /**
- * Nothing で生成したインスタンスは何も無いことを示すオブジェクトです
+ * Nothing で生成したインスタンスは何も無いことを示す
+ * GameObjects を継承
+ * MovingObjects は継承していない
+ * つまり動くことはない
  */
 public class Nothing implements GameObjects {
 
