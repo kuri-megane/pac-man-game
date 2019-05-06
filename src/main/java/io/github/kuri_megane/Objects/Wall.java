@@ -12,14 +12,31 @@ public class Wall implements GameObjects {
     public Wall() {
     }
 
+
+    /**
+     * Wall をどのように表示させるか取得します．
+     *
+     * @return 表示用の文字
+     */
     public String getChar() {
         return displayChar;
     }
 
+    /**
+     * この Wall のある位置に移動できるか取得します．
+     * Wall は false です．
+     *
+     * @return 移動できるかどうかのフラグ
+     */
     public boolean isGo() {
         return goFlag;
     }
 
+    /**
+     * Wall であることを示すキーを取得します．
+     *
+     * @return 文字列 "w" (private static final String key で指定)
+     */
     public String getKey() {
         return key;
     }
