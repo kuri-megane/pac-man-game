@@ -21,12 +21,24 @@ public class GameMap {
     // パックマンが死んだかどうか
     private boolean dead = false;
 
+    /**
+     * GameMap を作成し，使えるように準備します．
+     * デフォルトで定義されたものを用います．
+     * setUp(), convert(), count() を実行します．
+     */
     public GameMap() {
         setUp();
         convert();
         count();
     }
 
+    /**
+     * GameMap を作成し，使えるように準備します．
+     * 引数で与えられたもので作成します.
+     * setUp(strGameMap), convert(), count() を実行します．
+     *
+     * @param strGameMap どう配置するか定義された String[][]
+     */
     public GameMap(String[][] strGameMap) {
         setUp(strGameMap);
         convert();

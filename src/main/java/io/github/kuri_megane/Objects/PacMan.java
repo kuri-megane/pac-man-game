@@ -21,6 +21,13 @@ public class PacMan extends Point implements GameObjects, MovingObjects {
     // 前にいた座標
     private Point before;
 
+    /**
+     * 初期座標を決定します．
+     * 一緒に直前座標も初期座標とします.
+     *
+     * @param row どの行にいるか
+     * @param col どの列にいるか
+     */
     public PacMan(int row, int col) {
         super(row, col);
         before = new Point(row, col);
