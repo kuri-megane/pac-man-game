@@ -16,20 +16,22 @@ public class MonsterTest {
 
     @Test
     public void testGetChar() {
-        Nothing nothing = new Nothing();
-        assertThat(nothing.getChar(), is("×"));
+        Monster monster = new Monster(1, 1);
+
+        // 色を付けて出力しているので色のコードが入る
+        assertThat(monster.getChar(), is("\u001B[00;35m×\u001B[00m"));
     }
 
     @Test
     public void testIsGo() {
-        Nothing nothing = new Nothing();
-        assertThat(nothing.isGo(), is(false));
+        Monster monster = new Monster(1, 1);
+        assertThat(monster.isGo(), is(false));
     }
 
     @Test
     public void testGetKey() {
-        Nothing nothing = new Nothing();
-        assertThat(nothing.getKey(), is("m"));
+        Monster monster = new Monster(1, 1);
+        assertThat(monster.getKey(), is("m"));
     }
 
     @Test
