@@ -14,6 +14,8 @@ jobs:
             - ~/.m2
           key: pac-man-game-1.0-{{ checksum "pom.xml" }}
       - run: mvn compile
+      - run: mvn build
+      - run: mvn package
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
