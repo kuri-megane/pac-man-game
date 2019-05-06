@@ -66,6 +66,6 @@ public class Main {
 
         // 終了
         // XXX: スレッドがうまく終了できていないため
-//        System.exit(0);
+        System.exit(0);
     }
 }
