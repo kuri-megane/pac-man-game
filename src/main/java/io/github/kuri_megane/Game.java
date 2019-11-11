@@ -22,9 +22,9 @@ public class Game {
     private PlayScreen playScreen = new PlayScreen();
     private PacMan pacMan = new PacMan(9, 11);
     private Monster monster1 = new Monster(9, 1);
-    private Monster monster2 = new Monster(9, 20);
-    private Monster monster3 = new Monster(16, 14);
-    private Monster monster4 = new Monster(1, 1);
+    private Monster monster2 = new Monster(9, 21);
+    private Monster monster3 = new Monster(3, 7);
+    private Monster monster4 = new Monster(17, 21);
     private Controller controller = new Controller(gameMap, pacMan);
 
 

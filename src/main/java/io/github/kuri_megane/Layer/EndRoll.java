@@ -7,8 +7,6 @@ import java.util.List;
 
 public class EndRoll extends Display {
 
-    private static final List<String> title = new ArrayList<String>();
-
     public EndRoll() {
         super();
     }
@@ -20,6 +18,8 @@ public class EndRoll extends Display {
      * @return 整形した文字列
      */
     public List<String> createResultStrings(GameData gameData) {
+
+        final List<String> title = new ArrayList<String>();
 
         String strResult = "";
         String strIsDead = "";
