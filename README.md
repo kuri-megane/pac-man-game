@@ -13,9 +13,9 @@ Javaで書いてます．
 
 # How to play
 
-![フレイ動画](https://user-images.githubusercontent.com/43510592/57206275-88901b80-6fff-11e9-9eba-cd2668a4a8c4.gif)
+![フレイ動画](https://user-images.githubusercontent.com/43510592/68592999-c6528d00-04d7-11ea-859a-aa73a22ed33f.gif)
 
-and [See YouTube](https://youtu.be/zF0qn5xk3Oc)
+and [See YouTube](https://youtu.be/W1M-HNycAs8)
 
 ```bash
 $ mvn install -DskipTests=true
